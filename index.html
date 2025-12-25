@@ -1,0 +1,2839 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Mohamed – Mobile Development Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#0d1117">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d1117">
+<meta name="description" content="CCNA-driven Mobile Development in the making – building resilient labs and cloud-ready skills.">
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTW9oYW1lZCBQb3J0Zm9saW8iLCJzaG9ydF9uYW1lIjoiTW9oYW1lZCIsInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZWVmMmY2IiwidGhlbWVfY29sb3IiOiIwdmE1ZTVlOSJ9"/>
+
+<style>
+/* ---------- ROOT + THEME ---------- */
+:root{
+  --bg:#0d1117;--bg-secondary:#161b22;--panel:#0f151b;--card:#0b1220;--card-hover:#0d1621;
+  --muted:#8b949e;--text:#e2e8f0;--text-secondary:#a8b3cf;--accent:#58a6ff;--accent2:#f6c352;
+  --accent3:#c792ea;--accent4:#f87171;--success:#3fb950;--warning:#d29922;--error:#f85149;
+  --shadow:0 10px 40px rgba(0,0,0,.45);--shadow-lg:0 20px 60px rgba(0,0,0,.65);
+  --glow:0 0 20px rgba(88,166,255,.4);--glow-lg:0 0 40px rgba(88,166,255,.6);
+  --border:rgba(48,54,61,.8);
+  --radius:20px;--radius-sm:12px;
+  --gradient-1:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+  --gradient-2:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);
+  --gradient-3:linear-gradient(135deg,var(--accent3) 0%,var(--accent4) 100%);
+  --profile-image:url('https://picsum.photos/seed/mohamedprofile/400/400.jpg');
+  --project-image-1:url('https://picsum.photos/seed/vlanproject/600/400.jpg');
+  --project-image-2:url('https://picsum.photos/seed/ospfproject/600/400.jpg');
+  --project-image-3:url('https://picsum.photos/seed/ipv6project/600/400.jpg');
+  --project-image-4:url('https://picsum.photos/seed/securityproject/600/400.jpg');
+  --project-image-5:url('https://picsum.photos/seed/officeproject/600/400.jpg');
+  --project-image-6:url('https://picsum.photos/seed/scriptproject/600/400.jpg');
+  --google-image:url('https://picsum.photos/seed/googleproject/600/400.jpg');
+}
+[data-theme="light"]{
+  --bg:#eef2f6;--bg-secondary:#f8fafc;--panel:#ffffff;--card:#ffffff;--card-hover:#ffffff;
+  --muted:#64748b;--text:#0f172a;--text-secondary:#334155;--accent:#0ea5e9;--accent2:#f59e0b;
+  --accent3:#8b5cf6;--accent4:#ec4899;--success:#22c55e;--warning:#f59e0b;--error:#ef4444;
+  --shadow:0 10px 40px rgba(0,0,0,.08);--shadow-lg:0 20px 60px rgba(0,0,0,.12);
+  --glow:0 0 20px rgba(14,165,233,.4);--glow-lg:0 0 40px rgba(14,165,233,.6);
+  --border:rgba(148,163,184,.1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui;background:var(--bg);color:var(--text);
+  overflow-x:hidden;animation:fadeIn 1s ease-out;
+  position:relative;
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ---------- ENHANCED BACKGROUND ---------- */
+.aurora{position:fixed;inset:0;z-index:-3;overflow:hidden}
+.aurora div{position:absolute;width:900px;height:900px;border-radius:50%;filter:blur(120px);opacity:.3;animation:float 25s infinite ease-in-out}
+.aurora .a1{background:radial-gradient(circle,var(--accent) 0%,transparent 65%);top:-250px;left:-200px}
+.aurora .a2{background:radial-gradient(circle,var(--accent2) 0%,transparent 65%);bottom:-250px;right:-200px;animation-delay:10s}
+.aurora .a3{background:radial-gradient(circle,var(--accent3) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:5s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(140px,-110px) scale(1.15)}66%{transform:translate(-160px,100px) scale(.9)}}
+
+#networkCanvas{position:fixed;inset:0;z-index:-2;pointer-events:none}
+.particles{position:fixed;inset:0;z-index:-1;pointer-events:none}
+
+/* ---------- LOADING SCREEN ---------- */
+.loading-screen{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity 0.5s, visibility 0.5s}
+.loading-screen.hidden{opacity:0;visibility:hidden}
+.loader{width:60px;height:60px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- MAGNETIC EFFECT ---------- */
+.magnetic{transition:transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);will-change:transform}
+
+/* ---------- HEADER ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:200;height:80px;background:rgba(13,17,23,0.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;align-items:center;padding:0 32px;box-shadow:0 2px 20px rgba(0,0,0,0.05);animation:slideDown 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);transition:all 0.3s;border-bottom:1px solid var(--border)}
+[data-theme="light"] header{background:rgba(255,255,255,0.7);border-bottom:none}
+header.scrolled{height:70px;background:rgba(13,17,23,0.95);box-shadow:var(--shadow)}
+[data-theme="light"] header.scrolled{background:rgba(255,255,255,0.9)}
+@keyframes slideDown{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
+.nav{flex:1;max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:900;font-size:1.5rem;background:var(--gradient-2);-webkit-background-clip:text;color:transparent;background-size:200% 200%;animation:shimmer 5s infinite ease-in-out;letter-spacing:-0.5px}
+@keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.links{display:flex;gap:8px}
+.links a{color:var(--muted);position:relative;padding:12px 20px;border-radius:var(--radius-sm);font-weight:600;font-size:0.95rem;transition:all 0.3s;overflow:hidden}
+.links a::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(88,166,255,0.1),transparent);transition:left 0.5s}
+.links a:hover::before{left:100%}
+.links a:hover{color:var(--accent);background:rgba(88,166,255,0.1);transform:translateY(-2px)}
+.links a.active{color:var(--accent);background:rgba(88,166,255,0.15)}
+.theme-toggle{width:50px;height:50px;border-radius:50%;background:var(--card);display:grid;place-items:center;box-shadow:var(--shadow);cursor:pointer;transition:all 0.4s;position:relative;overflow:hidden}
+.theme-toggle::before{content:'';position:absolute;inset:0;background:var(--gradient-2);opacity:0;transition:opacity 0.3s}
+.theme-toggle:hover::before{opacity:0.1}
+.theme-toggle:hover{transform:scale(1.1) rotate(180deg);box-shadow:var(--glow)}
+.theme-toggle svg{width:24px;height:24px;stroke:var(--muted);fill:none;position:absolute;transition:all 0.4s;z-index:1}
+.sun{opacity:0;transform:rotate(90deg)}.moon{opacity:1;transform:rotate(0deg)}
+[data-theme="light"] .sun{opacity:1;transform:rotate(0deg)}
+[data-theme="light"] .moon{opacity:0;transform:rotate(-90deg)}
+
+/* ---------- HERO ---------- */
+.hero{max-width:1150px;margin:80px auto;padding:30px 24px;display:grid;grid-template-columns:1fr 340px;gap:50px;align-items:center}
+@media(max-width:900px){.hero{grid-template-columns:1fr;text-align:center}}
+.profile-container{width:230px;height:230px;margin:auto;position:relative;animation:floatSlow 5s infinite ease-in-out;z-index:10}
+@keyframes floatSlow{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+.profile-circle{width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);border:5px solid var(--accent);box-shadow:0 25px 60px rgba(88,166,255,.45),0 0 0 10px rgba(88,166,255,.15);display:flex;align-items:center;justify-content:center;font-size:4.5rem;font-weight:bold;color:white;overflow:hidden;position:relative;transition:.4s;z-index:1}
+.profile-circle:hover{transform:scale(1.06);box-shadow:0 32px 80px rgba(88,166,255,.6),0 0 0 14px rgba(88,166,255,.22)}
+.profile-circle::before{content:'';position:absolute;inset:-20px;border-radius:50%;opacity:0;background:conic-gradient(from 0deg,var(--accent),var(--accent2),var(--accent));animation:rotate 4s linear infinite;transition:.4s;z-index:0}
+.profile-circle:hover::before{opacity:.7}
+@keyframes rotate{to{transform:rotate(360deg)}}
+.profile-img{width:100%;height:100%;object-fit:cover;border-radius:50%;position:relative;z-index:1}
+.status-badge{position:absolute;right:8px;bottom:10px;background:var(--card);padding:6px 14px;border-radius:20px;font-size:.82rem;font-weight:600;display:flex;align-items:center;gap:6px;box-shadow:0 4px 12px rgba(0,0,0,.15);animation:pulse 2s infinite;z-index:100}
+.status-dot{width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e;animation:blink 1.8s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-left h1{font-size:clamp(2.3rem,5vw,3.3rem);background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;color:transparent;margin-bottom:20px}
+.hero-left p{color:var(--muted);font-size:1.15rem;margin-bottom:26px}
+.hero-buttons{display:flex;gap:14px;flex-wrap:wrap}
+
+/* ---------- ENHANCED BUTTONS ---------- */
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;padding:16px 32px;font-weight:700;border-radius:var(--radius-sm);position:relative;overflow:hidden;transition:all 0.3s;box-shadow:0 4px 15px rgba(88,166,255,0.3);font-size:0.95rem;letter-spacing:0.5px}
+.btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);transition:left 0.5s}
+.btn:hover::before{left:100%}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(88,166,255,0.4);background:var(--accent2)}
+.btn-outline{background:transparent;color:var(--accent);border:2px solid var(--accent);box-shadow:none}
+.btn-outline:hover{background:var(--accent);color:#fff;box-shadow:0 8px 25px rgba(88,166,255,0.4)}
+
+/* ---------- SECTIONS ---------- */
+section{max-width:1200px;margin:0 auto 120px;padding:0 24px;position:relative}
+.section-header{margin-bottom:60px;text-align:center}
+h2{font-size:clamp(2rem,5vw,3rem);font-weight:900;margin-bottom:16px;display:inline-block;position:relative;background:var(--gradient-2);-webkit-background-clip:text;color:transparent;letter-spacing:-1px}
+h2::after{content:'';position:absolute;left:50%;bottom:-12px;width:80px;height:4px;background:var(--gradient-2);border-radius:2px;transform:translateX(-50%)}
+.section-subtitle{color:var(--text-secondary);font-size:1.1rem;margin-top:16px}
+
+/* ---------- ENHANCED SKILLS ---------- */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.skill-card{background:var(--card);padding:28px;border-radius:var(--radius);box-shadow:var(--shadow);transition:all 0.4s;position:relative;overflow:hidden;border:1px solid var(--border)}
+.skill-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:var(--gradient-2);transform:translateX(-100%);transition:transform 0.5s}
+.skill-card:hover::before{transform:translateX(0)}
+.skill-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:var(--accent)}
+.skill-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.skill-name{font-weight:700;font-size:1.1rem;color:var(--text)}
+.skill-percentage{font-weight:600;color:var(--accent);font-family:'JetBrains Mono',monospace}
+.skill-bar{height:12px;background:var(--bg-secondary);border-radius:999px;overflow:hidden;position:relative}
+.skill-fill{position:absolute;top:0;left:0;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));border-radius:999px;width:0;transition:width 3s cubic-bezier(0.25, 0.46, 0.45, 0.94);box-shadow:var(--glow)}
+.skills-tags{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:24px;background:var(--bg-secondary);color:var(--text);font-weight:600;font-size:0.9rem;transition:all 0.3s;border:1px solid var(--border);position:relative;overflow:hidden}
+.pill::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--gradient-2);opacity:0.1;transition:left 0.5s}
+.pill:hover::before{left:100%}
+.pill:hover{background:var(--accent);color:#fff;transform:translateY(-3px);box-shadow:0 8px 20px rgba(88,166,255,0.3);border-color:var(--accent)}
+
+/* ---------- EDUCATION & CERTIFICATIONS ---------- */
+.education-section{max-width:1200px;margin:0 auto 120px;padding:60px 24px;position:relative}
+.education-container{display:flex;flex-direction:column;gap:40px}
+.education-item{display:grid;grid-template-columns:1fr 400px;gap:40px;align-items:center;opacity:0;transform:translateY(40px);animation:fadeInUp 0.8s ease-out forwards}
+.education-item:nth-child(1){animation-delay:0.2s}
+.education-item:nth-child(2){animation-delay:0.4s}
+.education-item:nth-child(3){animation-delay:0.6s}
+@media(max-width:968px){.education-item{grid-template-columns:1fr;text-align:center}}
+.education-header{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.education-icon{width:60px;height:60px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:var(--card);box-shadow:var(--shadow);animation:iconPulse 3s infinite ease-in-out}
+.education-icon svg{width:40px;height:40px}
+.education-title h3{font-size:2rem;font-weight:800;background:var(--gradient-2);-webkit-background-clip:text;color:transparent;margin:0}
+.education-content p{font-size:1.1rem;line-height:1.8;color:var(--text-secondary);margin-bottom:24px}
+.education-content p:last-child{margin-bottom:0}
+.ccna-progress{background:var(--card);padding:24px;border-radius:var(--radius-sm);box-shadow:var(--shadow);border:1px solid var(--border);margin-top:20px;position:relative;overflow:hidden}
+.ccna-progress::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--gradient-2);opacity:0.05;transform:translateX(-100%);transition:transform 0.8s ease-out}
+.ccna-progress:hover::before{transform:translateX(0)}
+.ccna-progress-title{font-weight:700;font-size:1.2rem;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.progress-bar{height:10px;background:var(--bg-secondary);border-radius:999px;overflow:hidden;margin-bottom:12px;position:relative}
+.progress-fill{height:100%;background:var(--gradient-2);border-radius:999px;width:0;animation:progressFill 3s ease-out forwards;animation-delay:1s;box-shadow:var(--glow)}
+.ccna-progress-text{font-size:0.9rem;color:var(--text-secondary);display:flex;justify-content:space-between;align-items:center}
+.ccna-progress-stats{display:flex;gap:16px;margin-top:8px}
+.ccna-progress-stat{background:var(--bg-secondary);padding:8px 12px;border-radius:8px;font-size:0.8rem;font-weight:600;color:var(--accent)}
+.education-features{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:30px}
+.education-feature{background:var(--card);padding:20px;border-radius:var(--radius-sm);box-shadow:var(--shadow);transition:all 0.3s;border:1px solid var(--border);opacity:0;transform:translateY(20px);animation:fadeInUp 0.6s ease-out forwards}
+.education-feature:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--accent)}
+.education-feature-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.education-feature-icon svg{width:24px;height:24px;stroke:var(--accent)}
+.education-feature-title{font-weight:700;font-size:1.1rem;color:var(--text);margin-bottom:8px}
+.education-feature-desc{font-size:0.9rem;color:var(--text-secondary);line-height:1.5}
+.education-image{position:relative;opacity:0;transform:translateY(40px);animation:fadeInUp 0.8s ease-out forwards}
+.education-image-wrapper{position:relative;width:100%;max-width:500px;margin:0 auto;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);transform:perspective(1000px) rotateY(5deg);transition:transform 0.5s}
+.education-image-wrapper:hover{transform:perspective(1000px) rotateY(0deg)}
+.education-image-wrapper::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,var(--accent),var(--accent2));opacity:0.1;z-index:1}
+.education-image img{width:100%;height:auto;display:block;border-radius:var(--radius)}
+.education-image-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,var(--accent),var(--accent2));opacity:0;transition:opacity 0.3s;z-index:2}
+.education-image-wrapper:hover .education-image-overlay{opacity:0.1}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes progressFill{from{width:0}to{width:70%}}
+@keyframes iconPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+
+/* ---------- ENHANCED PROJECTS ---------- */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:32px}
+.project{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);transition:all 0.5s;cursor:pointer;border:1px solid var(--border);overflow:hidden;position:relative}
+.project::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,var(--accent),var(--accent2));opacity:0;transition:opacity 0.3s;z-index:1}
+.project:hover::before{opacity:0.03}
+.project:hover{transform:translateY(-12px) scale(1.02);box-shadow:var(--shadow-lg);border-color:var(--accent)}
+.project-image-wrapper{position:relative;width:100%;height:200px;overflow:hidden}
+.project-image{width:100%;height:100%;object-fit:cover;transition:transform 0.6s}
+.project:hover .project-image{transform:scale(1.1) rotate(2deg)}
+.project-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,0.7) 100%);opacity:0;transition:opacity 0.3s}
+.project:hover .project-overlay{opacity:1}
+.project-content{padding:28px;position:relative;z-index:2}
+.project-header{display:flex;justify-content:space-between;align-items:start;margin-bottom:12px}
+.project h3{font-size:1.3rem;font-weight:800;margin-bottom:8px;color:var(--text);transition:color 0.3s}
+.project:hover h3{color:var(--accent)}
+.project p{color:var(--text-secondary);font-size:0.95rem;line-height:1.6;margin-bottom:16px}
+.project-tags{display:flex;flex-wrap:wrap;gap:8px}
+.project-tag{padding:6px 12px;background:var(--bg-secondary);color:var(--accent);border-radius:16px;font-size:0.8rem;font-weight:600;border:1px solid var(--border);transition:all 0.3s}
+.project-tag:hover{background:var(--accent);color:#fff;transform:scale(1.05)}
+.project-link{position:absolute;top:20px;right:20px;width:40px;height:40px;background:var(--card);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(10px);transition:all 0.3s;box-shadow:var(--shadow)}
+.project:hover .project-link{opacity:1;transform:translateY(0)}
+.project-link:hover{background:var(--accent);color:#fff;transform:scale(1.1)}
+
+/* ---------- PROJECT MODAL ---------- */
+.project-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;visibility:hidden;transition:all 0.3s}
+.project-modal.active{opacity:1;visibility:visible}
+.project-modal-content{background:var(--card);border-radius:var(--radius);max-width:900px;width:90%;max-height:90vh;overflow-y:auto;position:relative;transform:scale(0.8) translateY(50px);transition:all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);box-shadow:var(--shadow-lg)}
+.project-modal.active .project-modal-content{transform:scale(1) translateY(0)}
+.project-modal-header{position:relative;padding:30px 30px 0;border-bottom:1px solid var(--border)}
+.project-modal-close{position:absolute;top:20px;right:20px;width:40px;height:40px;background:var(--card);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s;border:1px solid var(--border);z-index:10}
+.project-modal-close:hover{background:var(--accent);color:#fff;transform:rotate(90deg)}
+.project-modal-title{font-size:2rem;font-weight:900;background:var(--gradient-2);-webkit-background-clip:text;color:transparent;margin-bottom:20px}
+.project-modal-body{padding:30px}
+.project-modal-image{width:100%;height:400px;object-fit:cover;border-radius:var(--radius-sm);margin-bottom:30px;box-shadow:var(--shadow)}
+.project-modal-description{font-size:1.1rem;line-height:1.8;color:var(--text-secondary);margin-bottom:30px}
+.project-modal-details{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:30px}
+.project-modal-detail{background:var(--bg-secondary);padding:20px;border-radius:var(--radius-sm);transition:all 0.3s}
+.project-modal-detail:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.project-modal-detail-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.project-modal-detail-icon svg{width:24px;height:24px;stroke:var(--accent)}
+.project-modal-detail-title{font-weight:700;font-size:1.1rem;color:var(--text);margin-bottom:8px}
+.project-modal-detail-desc{font-size:0.9rem;color:var(--text-secondary);line-height:1.5}
+.project-modal-tech{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:30px}
+.project-modal-tech-item{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:var(--accent);color:#fff;border-radius:20px;font-weight:600;font-size:0.9rem;animation:slideIn 0.5s ease-out}
+@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+.project-modal-links{display:flex;gap:16px;flex-wrap:wrap}
+.project-modal-link{display:inline-flex;align-items:center;gap:8px;background:var(--card);color:var(--accent);padding:12px 20px;border-radius:var(--radius-sm);font-weight:600;text-decoration:none;transition:all 0.3s;border:2px solid var(--accent)}
+.project-modal-link:hover{background:var(--accent);color:#fff;transform:translateY(-3px);box-shadow:var(--shadow)}
+
+/* ---------- ENHANCED INTRODUCTION ---------- */
+.intro-section{max-width:1200px;margin:0 auto 120px;padding:60px 24px;position:relative}
+.intro-container{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media(max-width:968px){.intro-container{grid-template-columns:1fr;text-align:center}}
+.intro-greeting{font-size:1.2rem;font-weight:600;color:var(--accent2);margin-bottom:10px;letter-spacing:1px;opacity:0;animation:fadeInUp 0.8s ease-out forwards}
+.intro-greeting .wave-emoji{font-size:2.5rem;display:inline-block;animation:wave 2s infinite;transform-origin:70% 70%;}
+@keyframes wave{0%,100%{transform:rotate(0deg)}10%{transform:rotate(14deg)}20%{transform:rotate(-8deg)}30%{transform:rotate(14deg)}40%{transform:rotate(-4deg)}50%{transform:rotate(10deg)}60%{transform:rotate(0deg)}}
+.intro-name{font-size:clamp(2.5rem,5vw,3.5rem);font-weight:900;margin-bottom:16px;background:var(--gradient-2);-webkit-background-clip:text;color:transparent;letter-spacing:-1px;opacity:0;animation:fadeInUp 0.8s ease-out 0.2s forwards}
+.intro-title{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text);margin-bottom:40px;opacity:0;animation:fadeInUp 0.8s ease-out 0.4s forwards}
+.intro-content{opacity:0;animation:fadeInUp 0.8s ease-out 0.6s forwards}
+.intro-content p{font-size:1.1rem;line-height:1.8;color:var(--text-secondary);margin-bottom:24px}
+.intro-content p:last-child{margin-bottom:0}
+.intro-image{position:relative;opacity:0;animation:fadeInUp 0.8s ease-out 0.8s forwards}
+.intro-image-wrapper{position:relative;width:100%;max-width:450px;margin:0 auto;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);transform:perspective(1000px) rotateY(-5deg);transition:transform 0.5s}
+.intro-image-wrapper:hover{transform:perspective(1000px) rotateY(0deg)}
+.intro-image-wrapper::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,var(--accent),var(--accent2));opacity:0.1;z-index:1}
+.intro-image img{width:100%;height:auto;display:block;border-radius:var(--radius)}
+.intro-image-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,var(--accent),var(--accent2));opacity:0;transition:opacity 0.3s;z-index:2}
+.intro-image-wrapper:hover .intro-image-overlay{opacity:0.1}
+.intro-image-decoration{position:absolute;width:120px;height:120px;border-radius:50%;background:var(--gradient-2);filter:blur(40px);opacity:0.3;z-index:-1}
+.intro-image-decoration.one{top:-20px;right:-20px}
+.intro-image-decoration.two{bottom:-20px;left:-20px;background:var(--gradient-3)}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.intro-tech-stack{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.intro-tech-item{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:var(--bg-secondary);color:var(--text);border-radius:20px;font-weight:600;font-size:0.9rem;transition:all 0.3s;border:1px solid var(--border)}
+.intro-tech-item:hover{background:var(--accent);color:#fff;transform:translateY(-3px);box-shadow:0 8px 20px rgba(88,166,255,0.3);border-color:var(--accent)}
+
+/* ---------- ENHANCED BLOG ---------- */
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:32px}
+.post{background:var(--card);padding:32px;border-radius:var(--radius);box-shadow:var(--shadow);transition:all 0.4s;cursor:pointer;border:1px solid var(--border);position:relative;overflow:hidden}
+.post::before{content:'';position:absolute;left:0;top:0;width:4px;height:100%;background:var(--gradient-2);transform:translateY(-100%);transition:transform 0.5s}
+.post:hover::before{transform:translateY(0)}
+.post:hover{transform:translateX(12px) translateY(-4px);box-shadow:var(--shadow-lg)}
+.post-date{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:0.85rem;font-weight:600;margin-bottom:12px}
+.post h3{font-size:1.3rem;font-weight:800;margin-bottom:12px;color:var(--text);transition:color 0.3s}
+.post:hover h3{color:var(--accent)}
+.post p{color:var(--text-secondary);line-height:1.6}
+.read-more{display:inline-flex;align-items:center;gap:6px;color:var(--accent);font-weight:600;margin-top:16px;transition:gap 0.3s}
+.post:hover .read-more{gap:12px}
+
+/* ---------- BLOG MODAL ---------- */
+.blog-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;visibility:hidden;transition:all 0.3s}
+.blog-modal.active{opacity:1;visibility:visible}
+.blog-modal-content{background:var(--card);border-radius:var(--radius);max-width:900px;width:90%;max-height:90vh;overflow-y:auto;position:relative;transform:scale(0.8) translateY(50px);transition:all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);box-shadow:var(--shadow-lg)}
+.blog-modal.active .blog-modal-content{transform:scale(1) translateY(0)}
+.blog-modal-header{position:relative;padding:30px 30px 0;border-bottom:1px solid var(--border)}
+.blog-modal-close{position:absolute;top:20px;right:20px;width:40px;height:40px;background:var(--card);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s;border:1px solid var(--border);z-index:10}
+.blog-modal-close:hover{background:var(--accent);color:#fff;transform:rotate(90deg)}
+.blog-modal-title{font-size:2rem;font-weight:900;background:var(--gradient-2);-webkit-background-clip:text;color:transparent;margin-bottom:20px}
+.blog-meta{display:flex;gap:16px;margin-bottom:20px}
+.blog-modal-date{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:0.85rem;font-weight:600}
+.blog-modal-author{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:0.85rem;font-weight:600}
+.blog-modal-body{padding:30px}
+.blog-modal-image{width:100%;height:400px;object-fit:cover;border-radius:var(--radius-sm);margin-bottom:30px;box-shadow:var(--shadow)}
+.blog-modal-content-text{font-size:1.1rem;line-height:1.8;color:var(--text-secondary);margin-bottom:30px}
+.blog-modal-content-text p{margin-bottom:16px}
+.blog-modal-content-text h3{font-size:1.4rem;font-weight:700;color:var(--text);margin:24px 0 16px}
+.blog-modal-content-text ul, .blog-modal-content-text ol{margin-left:24px;margin-bottom:16px}
+.blog-modal-content-text li{margin-bottom:8px}
+.blog-modal-content-text blockquote{border-left:4px solid var(--accent);padding-left:16px;margin:24px 0;font-style:italic;color:var(--text-secondary)}
+.blog-modal-tags{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:30px}
+.blog-modal-tag{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:var(--bg-secondary);color:var(--accent);border-radius:20px;font-weight:600;font-size:0.9rem}
+.blog-modal-footer{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid var(--border)}
+.blog-modal-share{display:flex;gap:12px}
+.blog-modal-share-button{width:40px;height:40px;border-radius:50%;background:var(--bg-secondary);display:flex;align-items:center;justify-content:center;transition:all 0.3s}
+.blog-modal-share-button:hover{background:var(--accent);color:#fff}
+
+/* ---------- ENHANCED CONTACT ---------- */
+.contact-wrapper{display:grid;grid-template-columns:1fr 380px;gap:40px}
+@media(max-width:968px){.contact-wrapper{grid-template-columns:1fr}}
+.contact-form{background:var(--card);padding:40px;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border)}
+.form-group{margin-bottom:24px}
+.form-group label{display:block;margin-bottom:8px;font-weight:600;color:var(--text)}
+.form-group input,.form-group textarea{width:100%;background:var(--bg-secondary);border:2px solid var(--border);padding:16px;border-radius:var(--radius-sm);color:var(--text);font-family:inherit;transition:all 0.3s;font-size:0.95rem}
+.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(88,166,255,0.1);transform:translateY(-2px)}
+.form-group .error-message{color:var(--error);font-size:0.85rem;margin-top:8px;display:none}
+.form-group.error input, .form-group.error textarea{border-color:var(--error)}
+.form-group.error .error-message{display:block}
+.form-submit{display:flex;justify-content:space-between;align-items:center}
+.contact-info{display:flex;flex-direction:column;gap:20px}
+.info-card{background:var(--card);padding:28px;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);transition:all 0.3s}
+.info-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.info-card h4{font-size:1.1rem;font-weight:700;margin-bottom:16px;color:var(--text)}
+.info-item{display:flex;align-items:center;gap:12px;margin-bottom:12px;color:var(--text-secondary);transition:color 0.3s}
+.info-item:hover{color:var(--accent)}
+.info-item a{color:inherit;text-decoration:none}
+.info-item a:hover{text-decoration:underline}
+
+/* ---------- FORM NOTIFICATION ---------- */
+.form-notification{position:fixed;top:100px;right:20px;background:var(--card);padding:16px 24px;border-radius:var(--radius-sm);box-shadow:var(--shadow-lg);z-index:1000;display:flex;align-items:center;gap:12px;transform:translateX(120%);transition:transform 0.3s ease-out}
+.form-notification.show{transform:translateX(0)}
+.form-notification.success{border-left:4px solid var(--success)}
+.form-notification.error{border-left:4px solid var(--error)}
+.form-notification-icon{width:24px;height:24px}
+.form-notification.success .form-notification-icon{color:var(--success)}
+.form-notification.error .form-notification-icon{color:var(--error)}
+.form-notification-text{font-weight:600;color:var(--text)}
+
+/* ---------- ENHANCED FOOTER ---------- */
+footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border)}
+.footer-content{max-width:1200px;margin:auto}
+.footer-links{display:flex;justify-content:center;gap:24px;margin-bottom:24px}
+.footer-links a{color:var(--muted);transition:color 0.3s}
+.footer-links a:hover{color:var(--accent)}
+.copyright{color:var(--text-secondary);font-size:0.9rem}
+.back-to-top{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:var(--accent);font-weight:600;transition:all 0.3s}
+.back-to-top:hover{gap:16px}
+
+/* ---------- SCROLL PROGRESS ---------- */
+.scroll-progress{position:fixed;top:0;left:0;width:100%;height:3px;background:var(--gradient-2);transform-origin:left;transform:scaleX(0);z-index:300;transition:transform 0.2s}
+
+/* ---------- CURSOR EFFECT ---------- */
+.cursor-glow{position:fixed;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,var(--accent) 0%,transparent 70%);opacity:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:opacity 0.3s}
+
+/* ---------- UTILITIES ---------- */
+.reveal{opacity:0;transform:translateY(30px);transition:all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)}
+.reveal.show{opacity:1;transform:translateY(0)}
+.glass-effect{background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.text-gradient{background:var(--gradient-2);-webkit-background-clip:text;color:transparent}
+
+/* ---------- MOBILE RESPONSIVENESS ---------- */
+@media (max-width: 768px) {
+  /* Header adjustments */
+  header {
+    padding: 0 16px;
+    height: 70px;
+  }
+  
+  .logo {
+    font-size: 1.2rem;
+  }
+  
+  .links {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--card);
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+  
+  .links.active {
+    display: flex;
+  }
+  
+  .links a {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .theme-toggle {
+    width: 40px;
+    height: 40px;
+  }
+  
+  /* Hero section adjustments */
+  .hero {
+    padding: 20px 16px;
+    margin-top: 70px;
+  }
+  
+  .hero-left h1 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  }
+  
+  .hero-left p {
+    font-size: 1rem;
+  }
+  
+  .profile-container {
+    width: 180px;
+    height: 180px;
+    margin-top: 30px;
+  }
+  
+  .btn {
+    padding: 14px 24px;
+    font-size: 0.9rem;
+  }
+  
+  /* Section adjustments */
+  section {
+    padding: 0 16px;
+    margin-bottom: 80px;
+  }
+  
+  .section-header {
+    margin-bottom: 40px;
+  }
+  
+  h2 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+  }
+  
+  /* Skills section adjustments */
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .skill-card {
+    padding: 20px;
+  }
+  
+  .skills-tags {
+    gap: 8px;
+  }
+  
+  .pill {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+  
+  /* Education section adjustments */
+  .education-section {
+    padding: 40px 16px;
+  }
+  
+  .education-item {
+    gap: 30px;
+  }
+  
+  .education-features {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .education-feature {
+    padding: 15px;
+  }
+  
+  /* Projects section adjustments */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .project-content {
+    padding: 20px;
+  }
+  
+  .project h3 {
+    font-size: 1.2rem;
+  }
+  
+  /* Introduction section adjustments */
+  .intro-section {
+    padding: 40px 16px;
+  }
+  
+  .intro-container {
+    gap: 40px;
+  }
+  
+  .intro-name {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+  }
+  
+  .intro-title {
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+  }
+  
+  .intro-content p {
+    font-size: 1rem;
+  }
+  
+  .intro-tech-stack {
+    gap: 8px;
+  }
+  
+  .intro-tech-item {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  /* Blog section adjustments */
+  .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .post {
+    padding: 24px;
+  }
+  
+  .post h3 {
+    font-size: 1.2rem;
+  }
+  
+  /* Contact section adjustments */
+  .contact-form {
+    padding: 30px 20px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 14px;
+  }
+  
+  /* Footer adjustments */
+  footer {
+    padding: 30px 16px;
+  }
+  
+  .footer-links {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  /* Modal adjustments */
+  .project-modal-content,
+  .blog-modal-content {
+    width: 95%;
+    max-height: 95vh;
+  }
+  
+  .project-modal-header,
+  .blog-modal-header {
+    padding: 20px 20px 0;
+  }
+  
+  .project-modal-body,
+  .blog-modal-body {
+    padding: 20px;
+  }
+  
+  .project-modal-image,
+  .blog-modal-image {
+    height: 250px;
+  }
+  
+  .project-modal-details {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Form notification adjustments */
+  .form-notification {
+    right: 10px;
+    left: 10px;
+    top: 80px;
+  }
+  
+  /* Adjustments for smaller screens */
+  @media (max-width: 480px) {
+    .profile-container {
+      width: 150px;
+      height: 150px;
+    }
+    
+    .btn {
+      padding: 12px 20px;
+      font-size: 0.85rem;
+    }
+    
+    .skill-card {
+      padding: 16px;
+    }
+    
+    .project-content {
+      padding: 16px;
+    }
+    
+    .education-feature {
+      padding: 12px;
+    }
+    
+    .contact-form {
+      padding: 20px 16px;
+    }
+  }
+}
+
+/* Mobile menu toggle */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+}
+</style>
+<base target="_blank">
+</head>
+
+<body>
+
+<!-- ---------- LOADING SCREEN ---------- -->
+<div class="loading-screen" id="loadingScreen">
+  <div class="loader"></div>
+</div>
+
+<!-- ---------- SCROLL PROGRESS ---------- -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ---------- CURSOR GLOW ---------- -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- ---------- FIXED BACKGROUND ---------- -->
+<div class="aurora">
+  <div class="a1"></div>
+  <div class="a2"></div>
+  <div class="a3"></div>
+</div>
+<canvas id="networkCanvas"></canvas>
+<div class="particles" id="particles"></div>
+
+<!-- ---------- HEADER ---------- -->
+<header id="header">
+  <div class="nav">
+    <div class="logo magnetic">MOHAMED</div>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <nav class="links" id="navLinks">
+      <a href="#about" class="magnetic active">About</a>
+      <a href="#introduction" class="magnetic">Introduction</a>
+      <a href="#skills" class="magnetic">Skills</a>
+      <a href="#education" class="magnetic">Education</a>
+      <a href="#projects" class="magnetic">Projects</a>
+      <a href="#blog" class="magnetic">Blog</a>
+      <a href="#contact" class="magnetic">Contact</a>
+    </nav>
+    <button class="theme-toggle magnetic" id="themeToggle">
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/>
+        <line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- ---------- HERO ---------- -->
+<section id="about" class="hero reveal">
+  <div class="hero-left">
+    <h1><span class="gradient-text" id="typeWriter">Mobile Development in the Making</span></h1>
+    <p>CCNA-driven, cloud-curious, and building a strong foundation for a global networking career with expertise in modern network architectures and automation.</p>
+    <div class="hero-buttons">
+      <a href="cv.pdf" download class="btn magnetic">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download CV
+      </a>
+      <a href="#contact" class="btn btn-outline magnetic">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="profile-container">
+      <div class="profile-circle">
+        <img src="profile.jpg" alt="Mohamed" class="profile-img">
+      </div>
+      <div class="status-badge">
+        <div class="status-dot"></div>
+        <span>Studying CCNA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- INTRODUCTION ---------- -->
+<section id="introduction" class="intro-section reveal">
+  <div class="intro-container">
+    <div class="intro-left">
+      <div class="intro-greeting">Hi There! <span class="wave-emoji">👋🏻</span></div>
+      <h2 class="intro-name">I'M MOHAMED Anwer</h2>
+      <h3 class="intro-title">Mobile Development</h3>
+      <div class="intro-content">
+        <p>LET ME INTRODUCE MYSELF</p>
+        <p>I’m Mohamed Anwer, a Sudanese Computer science graduate (2022)I am a motivated software developer with a strong focus on building practical, user-centered applications. I have experience developing mobile and web solutions using Flutter, Dart, Laravel, and MySQL, with a solid understanding of application architecture, authentication systems, and data management.
+
+I am particularly interested in developing scalable systems that solve real-world problems, including administrative, agricultural, and service-based applications. I enjoy turning requirements into clean, efficient code and continuously improving my skills by learning new technologies and best practices.
+
+I am eager to contribute to a professional team, grow as a developer, and deliver reliable, high-quality software solutions.</p>
+        <p>I work with focus, discipline, and continuous improvement. I value systems thinking, technical clarity, and strong personal development. My journey—moving countries, restarting learning paths, balancing survival and growth—taught me to stay consistent and push forward regardless of the challenge.</p>
+       
+      </div>
+      <div class="intro-tech-stack">
+        <!-- <span class="intro-tech-item">📦 Packet Tracer</span> -->
+        <span class="intro-tech-item">🖥️ VS code</span>
+        <!-- <span class="intro-tech-item">🔧 GNS3</span>
+        <span class="intro-tech-item">📊 Wireshark</span>
+        <span class="intro-tech-item">🐍 Python</span>
+        <span class="intro-tech-item">🌐 IPv6</span> -->
+      </div>
+    </div>
+    <div class="intro-image">
+      <div class="intro-image-wrapper">
+        <img src="profile.jpg" alt="Mobile Development">
+        <div class="intro-image-overlay"></div>
+      </div>
+      <div class="intro-image-decoration one"></div>
+      <div class="intro-image-decoration two"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- SKILLS ---------- -->
+<section id="skills" class="reveal">
+  <div class="section-header">
+    <h2>Skills & Expertise</h2>
+    <p class="section-subtitle">Continuously expanding my technical toolkit</p>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-header">
+        <span class="skill-name">🌐 HTML</span>
+        <span class="skill-percentage">80%</span>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-fill" data-width="75"></div>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-header">
+        <span class="skill-name">Flutter</span>
+        <span class="skill-percentage">85%</span>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-fill" data-width="85"></div>
+      </div>
+    </div>
+    <!-- <div class="skill-card">
+      <div class="skill-header">
+        <span class="skill-name">🔒 Network Security</span>
+        <span class="skill-percentage">75%</span>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-fill" data-width="70"></div>
+      </div>
+    </div> -->
+    <div class="skill-card">
+      <div class="skill-header">
+        <span class="skill-name">🛠️ Network Tools</span>
+        <span class="skill-percentage">90%</span>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-fill" data-width="90"></div>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-header">
+        <span class="skill-name">🌐 IPv6 Implementation</span>
+        <span class="skill-percentage">65%</span>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-fill" data-width="65"></div>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-header">
+        <span class="skill-name">🤖 Automation & Python</span>
+        <span class="skill-percentage">20%</span>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-fill" data-width="20"></div>
+      </div>
+    </div>
+  </div>
+  <div class="skills-tags">
+    <span class="pill">📦 Packet Tracer</span>
+    <span class="pill">🖥️ EVE-NG</span>
+    <span class="pill">🔧 GNS3</span>
+    <span class="pill">📊 Wireshark</span>
+    <span class="pill">📈 Power BI</span>
+    <span class="pill">🐍 Python</span>
+    <span class="pill">🐳 Docker</span>
+    <span class="pill">☁️ AWS Basics</span>
+  </div>
+</section>
+
+<!-- ---------- EDUCATION & CERTIFICATIONS ---------- -->
+<section id="education" class="education-section reveal">
+  <div class="section-header">
+    <h2>Education & Certifications</h2>
+    <p class="section-subtitle">Academic foundation and professional development</p>
+  </div>
+  <div class="education-container">
+    
+    <!-- University Education -->
+    <div class="education-item">
+      <div class="education-content">
+        <div class="education-header">
+          <div class="education-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5L2 10z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+          </div>
+          <div class="education-title">
+            <h3>Future University, Sudan</h3>
+          </div>
+        </div>
+        <p><strong>Bachelor of Computer Science</strong> (2017 - 2022)</p>
+        <p>Completed an interdisciplinary computer science,systems administration, alongside understanding business processes, project planning, and IT management. Gained hands-on experience preparing for both technical certifications and real-world IT and business applications.</p>
+        
+        <div class="education-features">
+          <div class="education-feature" style="animation-delay: 0.8s;">
+            <div class="education-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9l-10-5z"/>
+              </svg>
+            </div>
+            <div class="education-feature-title">Computer Science</div>
+            <div class="education-feature-desc">Comprehensive foundation in programming, algorithms, and systems</div>
+          </div>
+          <!-- <div class="education-feature" style="animation-delay: 0.9s;">
+            <div class="education-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V8l-6-4-6 6v6s0 8 6 10z"/>
+              </svg>
+            </div>
+            <div class="education-feature-title">Networking Focus</div>
+            <div class="education-feature-desc">Specialized courses in network protocols and infrastructure</div>
+          </div> -->
+          <!-- <div class="education-feature" style="animation-delay: 1.0s;">
+            <div class="education-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 3v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H7a2 2 0 0 0-2-2z"/>
+              </svg>
+            </div>
+            <div class="education-feature-title">Lab Work</div>
+            <div class="education-feature-desc">Extensive hands-on experience with network equipment</div>
+          </div> -->
+          <div class="education-feature" style="animation-delay: 1.1s;">
+            <div class="education-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <div class="education-feature-title"> Graduated 2022</div>
+            <div class="education-feature-desc">Graduated with Honours</div>
+          </div>
+        </div>
+      </div>
+      <div class="education-image">
+        <div class="education-image-wrapper">
+          <img src="Future-university-logo.png" alt="University">
+          <div class="education-image-overlay"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Google Project Management Certificate -->
+    <!-- <div class="education-item">
+      <div class="education-content">
+        <div class="education-header">
+          <div class="education-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-5.04 3.3-7.53z" fill="#EA4335"/>
+            </svg>
+          </div>
+          <div class="education-title">
+            <h3>Google Project Management Certificate</h3>
+          </div>
+        </div>
+        <p><strong>Professional Certification</strong> (Completed 2023)</p>
+        <p>Completed Google's Project Management certification, gaining expertise in agile methodologies, stakeholder communication, and resource optimization. This certification complements my technical networking skills, bridging technical implementation with strategic project goals.</p>
+        
+        <div class="education-features">
+          <div class="education-feature" style="animation-delay: 0.8s;">
+            <div class="education-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9l-10-5z"/>
+              </svg>
+            </div>
+            <div class="education-feature-title">Project Planning</div>
+            <div class="education-feature-desc">Creating comprehensive project roadmaps with clear milestones</div>
+          </div>
+          <div class="education-feature" style="animation-delay: 0.9s;">
+            <div class="education-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <div class="education-feature-title">Risk Management</div>
+            <div class="education-feature-desc">Identifying and mitigating potential project risks</div>
+          </div>
+          <div class="education-feature" style="animation-delay: 1.0s;">
+            <div class="education-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="education-feature-title">Agile Methodologies</div>
+            <div class="education-feature-desc">Implementing sprints and iterative development</div>
+          </div>
+          <div class="education-feature" style="animation-delay: 1.1s;">
+            <div class="education-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+              </svg>
+            </div>
+            <div class="education-feature-title">Google Workspace</div>
+            <div class="education-feature-desc">Advanced proficiency in Google's productivity tools</div>
+          </div>
+        </div>
+      </div> -->
+      <!-- <div class="education-image">
+        <div class="education-image-wrapper">
+          <img src="google-project-management-certificate-v1.png" alt="Google Project Management Certificate">
+          <div class="education-image-overlay"></div>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- CCNA Certification (Last - In Progress) -->
+    <div class="education-item">
+      <div class="education-content">
+        <div class="education-header">
+          <div class="education-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V8l-6-4-6 6v6s0 8 6 10z"/>
+              <path d="M8 21l-4-4 8-8 8 8-4 4-6-6z"/>
+            </svg>
+          </div>
+          <div class="education-title">
+            <h3>Cisco Certified Network Associate (CCNA)</h3>
+          </div>
+        </div>
+        <p><strong>Professional Certification</strong> (In Progress - Expected Q1 2026)</p>
+        <p>Actively preparing for the Cisco CCNA certification, focusing on network fundamentals, routing and switching technologies, infrastructure services, and security fundamentals. This certification will validate my skills in installing, configuring, operating, and troubleshooting medium-sized routed and switched networks.</p>
+        
+        <div class="ccna-progress">
+          <div class="ccna-progress-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V8l-6-4-6 6v6s0 8 6 10z"/>
+            </svg>
+            <span>CCNA Preparation Progress</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+          <div class="ccna-progress-text">
+            <span>70% Complete</span>
+            <span>Expected completion: Q1 2026</span>
+          </div>
+          <div class="ccna-progress-stats">
+            <div class="ccna-progress-stat">Modules: 5/7</div>
+            <div class="ccna-progress-stat">Practice Tests: 12/20</div>
+            <div class="ccna-progress-stat">Lab Hours: 120+</div>
+          </div>
+        </div>
+        
+        <!-- <div class="education-features">
+          <div class="education-feature" style="animation-delay: 0.8s;">
+            <div class="education-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <div class="education-feature-title">Network Fundamentals</div>
+            <div class="education-feature-desc">Mastering OSI model, TCP/IP, and basic network concepts</div>
+          </div>
+          <div class="education-feature" style="animation-delay: 0.9s;">
+            <div class="education-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            </div>
+            <div class="education-feature-title">Routing & Switching</div>
+            <div class="education-feature-desc">Configuring and troubleshooting routers and switches</div>
+          </div>
+          <div class="education-feature" style="animation-delay: 1.0s;">
+            <div class="education-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V8l-6-4-6 6v6s0 8 6 10z"/>
+              </svg>
+            </div>
+            <div class="education-feature-title">Security Fundamentals</div>
+            <div class="education-feature-desc">Implementing basic network security and access control</div>
+          </div>
+          <div class="education-feature" style="animation-delay: 1.1s;">
+            <div class="education-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+              </svg>
+            </div>
+            <div class="education-feature-title">Automation & Programmability</div>
+            <div class="education-feature-desc">Introduction to network automation with Python</div>
+          </div>
+        </div> -->
+      </div>
+      <div class="education-image">
+        <div class="education-image-wrapper">
+          <img src="ccna-security-cisco-certifications-computer-security-cisco-systems-others.png" alt="CCNA Certification">
+          <div class="education-image-overlay"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- PROJECTS ---------- -->
+<!-- <section id="projects" class="reveal">
+  <div class="section-header">
+    <h2>Featured Projects</h2>
+    <p class="section-subtitle">Hands-on implementations showcasing my technical skills</p>
+  </div>
+  <div class="projects-grid">
+     Project 1 
+    <div class="project" data-project-id="1">
+      <div class="project-image-wrapper">
+        <img class="project-image" src="https://techvify.com/wp-content/uploads/2023/06/flutter-app-development.png" alt="VLAN Implementation Project">
+        <div class="project-overlay"></div>
+      </div>
+      <div class="project-content">
+        <div class="project-header">
+          <h3>Mobile Cleaning-Services App (Flutter + Dart)</h3>
+        </div>
+        <p>End-to-end product built with Flutter & Dart: customer app, provider app, and a full Firebase / Node.js admin panel. Features instant booking, GPS-based scheduling,  payments, push alerts, and real-time order tracking. Deployed on iOS, Android, and web.</p>
+        <div class="project-tags">
+          <span class="project-tag">Flutter</span>
+          <span class="project-tag">Dart</span>
+          <span class="project-tag">Mobile</span>
+        </div>
+      </div>
+      <a href="#" class="project-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15,3 21,3 21,9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Project 2 
+    <div class="project" data-project-id="2">
+      <div class="project-image-wrapper">
+        <img class="project-image" src="https://picsum.photos/seed/ospfproject/600/400.jpg" alt="OSPF Network Design">
+        <div class="project-overlay"></div>
+      </div>
+      <div class="project-content">
+        <div class="project-header">
+          <h3>OSPF Network Design</h3>
+        </div>
+        <p>Created a redundant OSPF routing topology with proper area segmentation, route summarization, and failover mechanisms for a service provider network.</p>
+        <div class="project-tags">
+          <span class="project-tag">OSPF</span>
+          <span class="project-tag">Routing</span>
+          <span class="project-tag">Redundancy</span>
+        </div>
+      </div>
+      <a href="#" class="project-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15,3 21,3 21,9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Project 3
+    <div class="project" data-project-id="3">
+      <div class="project-image-wrapper">
+        <img class="project-image" src="https://picsum.photos/seed/ipv6project/600/400.jpg" alt="IPv6 Migration">
+        <div class="project-overlay"></div>
+      </div>
+      <div class="project-content">
+        <div class="project-header">
+          <h3>Dual-Stack IPv6 Migration</h3>
+        </div>
+        <p>Planned and partially implemented an IPv6 migration strategy using dual-stack approach, including address planning, DNS configuration, and security considerations.</p>
+        <div class="project-tags">
+          <span class="project-tag">IPv6</span>
+          <span class="project-tag">Migration</span>
+          <span class="project-tag">Dual-Stack</span>
+        </div>
+      </div>
+      <a href="#" class="project-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15,3 21,3 21,9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Project 4 
+    <div class="project" data-project-id="4">
+      <div class="project-image-wrapper">
+        <img class="project-image" src="https://picsum.photos/seed/securityproject/600/400.jpg" alt="Network Security Implementation">
+        <div class="project-overlay"></div>
+      </div>
+      <div class="project-content">
+        <div class="project-header">
+          <h3>Network Security Implementation</h3>
+        </div>
+        <p>Deployed a comprehensive security solution including ACLs, port security, DHCP snooping, and dynamic ARP inspection to protect against common network threats.</p>
+        <div class="project-tags">
+          <span class="project-tag">Security</span>
+          <span class="project-tag">ACLs</span>
+          <span class="project-tag">Threat Prevention</span>
+        </div>
+      </div>
+      <a href="#" class="project-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15,3 21,3 21,9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Project 5 
+    <div class="project" data-project-id="5">
+      <div class="project-image-wrapper">
+        <img class="project-image" src="https://picsum.photos/seed/officeproject/600/400.jpg" alt="Office Network Setup">
+        <div class="project-overlay"></div>
+      </div>
+      <div class="project-content">
+        <div class="project-header">
+          <h3>Small Office Network Setup</h3>
+        </div>
+        <p>Designed and configured a complete network infrastructure for a small office, including VLANs, inter-VLAN routing, DHCP, DNS, and internet connectivity with basic firewall rules.</p>
+        <div class="project-tags">
+          <span class="project-tag">Network Design</span>
+          <span class="project-tag">Implementation</span>
+          <span class="project-tag">Services</span>
+        </div>
+      </div>
+      <a href="#" class="project-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15,3 21,3 21,9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Project 6 
+    <div class="project" data-project-id="6">
+      <div class="project-image-wrapper">
+        <img class="project-image" src="https://picsum.photos/seed/scriptproject/600/400.jpg" alt="Network Automation Scripts">
+        <div class="project-overlay"></div>
+      </div>
+      <div class="project-content">
+        <div class="project-header">
+          <h3>Network Automation Scripts</h3>
+        </div>
+        <p>Developed Python scripts using Netmiko and Paramiko to automate common network tasks including configuration backups, firmware updates, and health checks.</p>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Automation</span>
+          <span class="project-tag">Netmiko</span>
+        </div>
+      </div>
+      <a href="#" class="project-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15,3 21,3 21,9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section> -->
+
+<!-- ---------- BLOG ---------- -->
+<section id="blog" class="reveal">
+  <div class="section-header">
+    <h2>Latest Blog Posts</h2>
+    <p class="section-subtitle">Sharing insights and experiences from my networking journey</p>
+  </div>
+  <div class="blog-grid">
+    <!-- Blog Post 1 -->
+    <article class="post" data-post-id="1">
+      <div class="post-date">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <span>March 15, 2024</span>
+      </div>
+      <h3>Understanding OSPF Area Types and Their Use Cases</h3>
+      <p>Exploring the different OSPF area types (stub, totally stubby, NSSA) and when to implement each in your network design.</p>
+      <div class="read-more">
+        <span>Read More</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </div>
+    </article>
+
+    <!-- Blog Post 2 -->
+    <article class="post" data-post-id="2">
+      <div class="post-date">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <span>February 28, 2024</span>
+      </div>
+      <h3>VLAN Best Practices for Network Segmentation</h3>
+      <p>Implementing effective VLAN segmentation strategies to improve security, performance, and manageability in enterprise networks.</p>
+      <div class="read-more">
+        <span>Read More</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </div>
+    </article>
+
+    <!-- Blog Post 3 -->
+    <article class="post" data-post-id="3">
+      <div class="post-date">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <span>February 10, 2024</span>
+      </div>
+      <h3>Network Automation with Python: Getting Started</h3>
+      <p>A beginner's guide to automating network tasks using Python, with practical examples and recommended libraries.</p>
+      <div class="read-more">
+        <span>Read More</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ---------- CONTACT ---------- -->
+<section id="contact" class="reveal">
+  <div class="section-header">
+    <h2>Get In Touch</h2>
+    <p class="section-subtitle">Feel free to reach out for collaborations or inquiries</p>
+  </div>
+  <div class="contact-wrapper">
+    <div class="contact-form">
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" required>
+          <span class="error-message">Please enter your name</span>
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" required>
+          <span class="error-message">Please enter a valid email address</span>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" required>
+          <span class="error-message">Please enter a subject</span>
+        </div>
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+          <span class="error-message">Please enter your message</span>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="btn">Send Message</button>
+          <small id="formStatus"></small>
+        </div>
+      </form>
+    </div>
+    <div class="contact-info">
+      <div class="info-card">
+        <h4>Contact Information</h4>
+        <div class="info-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <a href="mailto:mohamed@example.com">wdanwer996@gmail.com</a>
+        </div>
+        <div class="info-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <a href="tel:+1234567890">+249910061582</a>
+        </div>
+        <div class="info-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>Khartoum, Sudan</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <h4>Social Profiles</h4>
+        <div class="info-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+          <a href="https://github.com/wdanwer99" target="_blank">GitHub</a>
+        </div>
+        <div class="info-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+          <a href="https://www.linkedin.com/in/mohamed-anwer-207464223/" target="_blank">LinkedIn</a>
+        </div>
+        <!-- <div class="info-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+          </svg>
+          <a href="https://twitter.com/mohamed" target="_blank">Twitter</a>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ---------- FOOTER ---------- -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <p class="copyright">© 2024 Mohamed. All rights reserved.</p>
+    <a href="#" class="back-to-top">
+      <span>Back to top</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="18 15 12 9 6 15"/>
+      </svg>
+    </a>
+  </div>
+</footer>
+
+<!-- ---------- PROJECT MODAL ---------- -->
+<div class="project-modal" id="projectModal">
+  <div class="project-modal-content">
+    <div class="project-modal-header">
+      <button class="project-modal-close" id="projectModalClose">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <h2 class="project-modal-title" id="projectModalTitle">Project Title</h2>
+    </div>
+    <div class="project-modal-body">
+      <img class="project-modal-image" id="projectModalImage" src="" alt="Project Image">
+      <div class="project-modal-description" id="projectModalDescription">
+        <p>Project description will be loaded here.</p>
+      </div>
+      <div class="project-modal-details">
+        <div class="project-modal-detail">
+          <div class="project-modal-detail-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+            </svg>
+          </div>
+          <h4 class="project-modal-detail-title">Category</h4>
+          <p class="project-modal-detail-desc" id="projectModalCategory">Networking</p>
+        </div>
+        <div class="project-modal-detail">
+          <div class="project-modal-detail-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h4 class="project-modal-detail-title">Duration</h4>
+          <p class="project-modal-detail-desc" id="projectModalDuration">2 weeks</p>
+        </div>
+        <div class="project-modal-detail">
+          <div class="project-modal-detail-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </div>
+          <h4 class="project-modal-detail-title">Technologies</h4>
+          <p class="project-modal-detail-desc" id="projectModalTech">Cisco, VLANs</p>
+        </div>
+        <div class="project-modal-detail">
+          <div class="project-modal-detail-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h4 class="project-modal-detail-title">Status</h4>
+          <p class="project-modal-detail-desc" id="projectModalStatus">Completed</p>
+        </div>
+      </div>
+      <div class="project-modal-tech" id="projectModalTechTags">
+        <span class="project-modal-tech-item">VLANs</span>
+        <span class="project-modal-tech-item">Switching</span>
+        <span class="project-modal-tech-item">Security</span>
+      </div>
+      <div class="project-modal-links">
+        <a href="#" class="project-modal-link" id="projectModalDemo" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Live Demo
+        </a>
+        <a href="#" class="project-modal-link" id="projectModalGithub" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+          View Code
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ---------- BLOG MODAL ---------- -->
+<div class="blog-modal" id="blogModal">
+  <div class="blog-modal-content">
+    <div class="blog-modal-header">
+      <button class="blog-modal-close" id="blogModalClose">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <h2 class="blog-modal-title" id="blogModalTitle">Blog Post Title</h2>
+      <div class="blog-meta">
+        <div class="blog-modal-date">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          <span id="blogModalDate">March 15, 2024</span>
+        </div>
+        <div class="blog-modal-author">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span>Mohamed</span>
+        </div>
+      </div>
+    </div>
+    <div class="blog-modal-body">
+      <img class="blog-modal-image" id="blogModalImage" src="" alt="Blog Post Image">
+      <div class="blog-modal-content-text" id="blogModalContent">
+        <p>Blog content will be loaded here.</p>
+      </div>
+      <div class="blog-modal-tags" id="blogModalTags">
+        <span class="blog-modal-tag">Networking</span>
+        <span class="blog-modal-tag">OSPF</span>
+        <span class="blog-modal-tag">Tutorial</span>
+      </div>
+      <div class="blog-modal-footer">
+        <div class="blog-modal-share">
+          <button class="blog-modal-share-button" id="shareTwitter">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+            </svg>
+          </button>
+          <button class="blog-modal-share-button" id="shareLinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </button>
+          <button class="blog-modal-share-button" id="shareLink">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ---------- FORM NOTIFICATION ---------- -->
+<div class="form-notification" id="formNotification">
+  <div class="form-notification-icon">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+      <polyline points="22 4 12 14.01 9 11.01"/>
+    </svg>
+  </div>
+  <div class="form-notification-text" id="formNotificationText">Message sent successfully!</div>
+</div>
+
+<script>
+// ---------- PROJECTS DATA ----------
+const projectsData = {
+  1: {
+    title: "Cleaning Services moblie application",
+    image: "https://techvify.com/wp-content/uploads/2023/06/flutter-app-development.png",
+    description: `
+      <p>This project involved designing and implementing a comprehensive VLAN segmentation strategy for a multi-department organization. The goal was to enhance network security, improve performance, and simplify network management.</p>
+      
+      <h3>Project Objectives</h3>
+      <ul>
+        <li>Segment the network into logical broadcast domains based on departmental functions</li>
+        <li>Implement inter-VLAN routing while maintaining security between segments</li>
+        <li>Optimize network traffic by containing broadcasts within appropriate VLANs</li>
+        <li>Design a scalable VLAN architecture that can accommodate future growth</li>
+      </ul>
+      
+      <h3>Implementation Details</h3>
+      <p>The network was segmented into the following VLANs:</p>
+      <ul>
+        <li>VLAN 10: Management (Network infrastructure devices)</li>
+        <li>VLAN 20: Finance Department</li>
+        <li>VLAN 30: Human Resources</li>
+        <li>VLAN 40: Engineering</li>
+        <li>VLAN 50: Guest Network</li>
+        <li>VLAN 99: Native VLAN</li>
+      </ul>
+      
+      <p>Inter-VLAN routing was implemented using a Layer 3 switch with appropriate access control lists to restrict traffic between sensitive departments while allowing necessary communications.</p>
+      
+      <h3>Challenges and Solutions</h3>
+      <p>One of the main challenges was ensuring that legacy applications continued to function properly after the VLAN implementation. This was addressed by carefully mapping application dependencies and creating specific firewall rules to maintain required communications.</p>
+      
+      <h3>Results</h3>
+      <p>The VLAN implementation resulted in:</p>
+      <ul>
+        <li>40% reduction in broadcast traffic</li>
+        <li>Improved network security through logical segmentation</li>
+        <li>Easier network management and troubleshooting</li>
+        <li>Enhanced performance for critical applications</li>
+      </ul>
+    `,
+    category: "Network Design",
+    duration: "3 weeks",
+    tech: "Cisco Switches, VLANs, ACLs",
+    status: "Completed",
+    tags: ["VLANs", "Switching", "Security", "Network Design"],
+    demo: "#",
+    github: "#"
+  },
+  2: {
+    title: "OSPF Network Design",
+    image: "https://picsum.photos/seed/ospfproject/600/400.jpg",
+    description: `
+      <p>This project focused on creating a redundant OSPF routing topology with proper area segmentation, route summarization, and failover mechanisms for a service provider network.</p>
+      
+      <h3>Project Objectives</h3>
+      <ul>
+        <li>Design a scalable OSPF routing architecture</li>
+        <li>Implement proper area segmentation for efficient routing</li>
+        <li>Configure route summarization to reduce routing table sizes</li>
+        <li>Ensure high availability through redundant paths</li>
+      </ul>
+      
+      <h3>Network Architecture</h3>
+      <p>The OSPF network was designed with the following hierarchy:</p>
+      <ul>
+        <li>Area 0 (Backbone): Core routers connecting all other areas</li>
+        <li>Area 1: North region</li>
+        <li>Area 2: South region</li>
+        <li>Area 3: East region</li>
+        <li>Area 4: West region</li>
+      </ul>
+      
+      <h3>Implementation Details</h3>
+      <p>Key implementation aspects included:</p>
+      <ul>
+        <li>Configuring OSPF process ID and router IDs</li>
+        <li>Implementing proper network statements for area assignment</li>
+        <li>Setting up route summarization at Area Border Routers (ABRs)</li>
+        <li>Configuring OSPF authentication for security</li>
+        <li>Implementing OSPF cost adjustments to influence path selection</li>
+      </ul>
+      
+      <h3>Challenges and Solutions</h3>
+      <p>The main challenge was designing an area segmentation that balanced routing efficiency with administrative complexity. This was addressed by creating logical area boundaries based on geographic regions and implementing proper route summarization.</p>
+      
+      <h3>Results</h3>
+      <p>The OSPF implementation resulted in:</p>
+      <ul>
+        <li>Sub-second convergence times</li>
+        <li>Reduced routing table sizes through summarization</li>
+        <li>Improved network scalability</li>
+        <li>Enhanced network resilience with automatic failover</li>
+      </ul>
+    `,
+    category: "Routing Protocols",
+    duration: "4 weeks",
+    tech: "OSPF, Cisco Routers, Route Summarization",
+    status: "Completed",
+    tags: ["OSPF", "Routing", "Redundancy", "Network Design"],
+    demo: "#",
+    github: "#"
+  },
+  3: {
+    title: "Dual-Stack IPv6 Migration",
+    image: "https://picsum.photos/seed/ipv6project/600/400.jpg",
+    description: `
+      <p>This project involved planning and partially implementing an IPv6 migration strategy using a dual-stack approach, including address planning, DNS configuration, and security considerations.</p>
+      
+      <h3>Project Objectives</h3>
+      <ul>
+        <li>Develop a comprehensive IPv6 migration strategy</li>
+        <li>Implement dual-stack configuration for key network services</li>
+        <li>Ensure proper DNS configuration for IPv6 resolution</li>
+        <li>Address security considerations specific to IPv6</li>
+      </ul>
+      
+      <h3>Migration Strategy</h3>
+      <p>The migration followed a phased approach:</p>
+      <ol>
+        <li>Planning phase: Address allocation and network design</li>
+        <li>Infrastructure preparation: Hardware and software compatibility assessment</li>
+        <li>Implementation phase: Dual-stack configuration</li>
+        <li>Testing phase: Service validation and performance testing</li>
+        <li>Optimization phase: Fine-tuning and security hardening</li>
+      </ol>
+      
+      <h3>Implementation Details</h3>
+      <p>Key implementation aspects included:</p>
+      <ul>
+        <li>Designing a hierarchical IPv6 addressing scheme</li>
+        <li>Configuring IPv6 on core network infrastructure</li>
+        <li>Setting up DHCPv6 for stateful address assignment</li>
+        <li>Configuring DNS for both IPv4 and IPv6 resolution</li>
+        <li>Implementing IPv6-specific security measures</li>
+      </ul>
+      
+      <h3>Challenges and Solutions</h3>
+      <p>The main challenges were ensuring application compatibility and managing the increased complexity of dual-stack operations. These were addressed through thorough testing and creating comprehensive documentation for troubleshooting.</p>
+      
+      <h3>Results</h3>
+      <p>The IPv6 implementation resulted in:</p>
+      <ul>
+        <li>Future-proofing the network for IPv6 growth</li>
+        <li>Improved end-to-end connectivity with larger address space</li>
+        <li>Enhanced network performance through IPv6 efficiency</li>
+        <li>Compliance with emerging IPv6 requirements</li>
+      </ul>
+    `,
+    category: "IPv6 Implementation",
+    duration: "6 weeks",
+    tech: "IPv6, Dual-Stack, DHCPv6, DNS",
+    status: "In Progress",
+    tags: ["IPv6", "Migration", "Dual-Stack", "Network Planning"],
+    demo: "#",
+    github: "#"
+  },
+  4: {
+    title: "Network Security Implementation",
+    image: "https://picsum.photos/seed/securityproject/600/400.jpg",
+    description: `
+      <p>This project focused on deploying a comprehensive security solution including ACLs, port security, DHCP snooping, and dynamic ARP inspection to protect against common network threats.</p>
+      
+      <h3>Project Objectives</h3>
+      <ul>
+        <li>Implement layered security controls across the network</li>
+        <li>Protect against common Layer 2 attacks</li>
+        <li>Restrict access to network resources based on role</li>
+        <li>Implement network monitoring for security events</li>
+      </ul>
+      
+      <h3>Security Measures Implemented</h3>
+      <p>The following security controls were deployed:</p>
+      <ul>
+        <li>Access Control Lists (ACLs) to restrict traffic between network segments</li>
+        <li>Port security to limit MAC addresses per switchport</li>
+        <li>DHCP snooping to prevent rogue DHCP servers</li>
+        <li>Dynamic ARP Inspection (DAI) to prevent ARP spoofing</li>
+        <li>IP Source Guard to validate IP-MAC bindings</li>
+        <li>Storm control to mitigate broadcast storms</li>
+      </ul>
+      
+      <h3>Implementation Details</h3>
+      <p>Key implementation aspects included:</p>
+      <ul>
+        <li>Creating standard and extended ACLs for traffic filtering</li>
+        <li>Configuring port security with sticky MAC addresses</li>
+        <li>Setting up DHCP snooping with trusted and untrusted ports</li>
+        <li>Implementing DAI with DHCP snooping binding database</li>
+        <li>Configuring syslog for security event logging</li>
+      </ul>
+      
+      <h3>Challenges and Solutions</h3>
+      <p>The main challenge was implementing security controls without disrupting legitimate network operations. This was addressed through careful planning, staged implementation, and thorough testing of each security measure.</p>
+      
+      <h3>Results</h3>
+      <p>The security implementation resulted in:</p>
+      <ul>
+        <li>Significant reduction in unauthorized network access attempts</li>
+        <li>Protection against common Layer 2 attacks</li>
+        <li>Improved network visibility through security logging</li>
+        <li>Compliance with security best practices</li>
+      </ul>
+    `,
+    category: "Network Security",
+    duration: "3 weeks",
+    tech: "ACLs, Port Security, DHCP Snooping, DAI",
+    status: "Completed",
+    tags: ["Security", "ACLs", "Threat Prevention", "Network Hardening"],
+    demo: "#",
+    github: "#"
+  },
+  5: {
+    title: "Small Office Network Setup",
+    image: "https://picsum.photos/seed/officeproject/600/400.jpg",
+    description: `
+      <p>This project involved designing and configuring a complete network infrastructure for a small office, including VLANs, inter-VLAN routing, DHCP, DNS, and internet connectivity with basic firewall rules.</p>
+      
+      <h3>Project Objectives</h3>
+      <ul>
+        <li>Design a scalable network architecture for a growing office</li>
+        <li>Implement network segmentation for security and performance</li>
+        <li>Configure essential network services (DHCP, DNS)</li>
+        <li>Set up secure internet connectivity with firewall protection</li>
+      </ul>
+      
+      <h3>Network Architecture</h3>
+      <p>The office network was designed with the following components:</p>
+      <ul>
+        <li>Core Layer 3 switch for routing and VLAN management</li>
+        <li>Access switches for end-device connectivity</li>
+        <li>Firewall for internet connectivity and security</li>
+        <li>Wireless access points for mobile connectivity</li>
+        <li>Network monitoring system for performance tracking</li>
+      </ul>
+      
+      <h3>Implementation Details</h3>
+      <p>Key implementation aspects included:</p>
+      <ul>
+        <li>Configuring VLANs for different departments (Staff, Guests, Servers)</li>
+        <li>Setting up inter-VLAN routing on the core switch</li>
+        <li>Configuring DHCP scopes for each VLAN</li>
+        <li>Setting up DNS forwarding to external DNS servers</li>
+        <li>Implementing firewall rules to restrict inbound traffic</li>
+        <li>Configuring VPN access for remote employees</li>
+      </ul>
+      
+      <h3>Challenges and Solutions</h3>
+      <p>The main challenge was implementing enterprise-grade features within a limited budget. This was addressed by carefully selecting cost-effective equipment and maximizing the capabilities of open-source solutions where possible.</p>
+      
+      <h3>Results</h3>
+      <p>The network implementation resulted in:</p>
+      <ul>
+        <li>Improved network performance through proper segmentation</li>
+        <li>Enhanced security through VLAN isolation and firewall rules</li>
+        <li>Reliable internet connectivity with failover capabilities</li>
+        <li>Scalable architecture to accommodate future growth</li>
+      </ul>
+    `,
+    category: "Network Implementation",
+    duration: "2 weeks",
+    tech: "VLANs, Inter-VLAN Routing, DHCP, DNS, Firewall",
+    status: "Completed",
+    tags: ["Network Design", "Implementation", "Services", "Small Business"],
+    demo: "#",
+    github: "#"
+  },
+  6: {
+    title: "Network Automation Scripts",
+    image: "https://picsum.photos/seed/scriptproject/600/400.jpg",
+    description: `
+      <p>This project involved developing Python scripts using Netmiko and Paramiko to automate common network tasks including configuration backups, firmware updates, and health checks.</p>
+      
+      <h3>Project Objectives</h3>
+      <ul>
+        <li>Automate repetitive network configuration tasks</li>
+        <li>Implement scheduled configuration backups</li>
+        <li>Create health monitoring scripts for network devices</li>
+        <li>Develop scripts for bulk firmware updates</li>
+      </ul>
+      
+      <h3>Automation Scripts Developed</h3>
+      <p>The following automation scripts were created:</p>
+      <ul>
+        <li>Configuration backup script with versioning</li>
+        <li>Network health monitoring with alerting</li>
+        <li>Bulk configuration deployment script</li>
+        <li>Firmware update automation with rollback capability</li>
+        <li>Network discovery and documentation script</li>
+      </ul>
+      
+      <h3>Implementation Details</h3>
+      <p>Key implementation aspects included:</p>
+      <ul>
+        <li>Using Netmiko for multi-vendor device support</li>
+        <li>Implementing error handling and logging</li>
+        <li>Creating configuration templates with Jinja2</li>
+        <li>Setting up scheduled execution with cron jobs</li>
+        <li>Integrating with monitoring systems for alerting</li>
+      </ul>
+      
+      <h3>Challenges and Solutions</h3>
+      <p>The main challenge was handling variations in device responses and ensuring reliable execution across different platforms. This was addressed through comprehensive error handling, retry mechanisms, and extensive testing.</p>
+      
+      <h3>Results</h3>
+      <p>The automation implementation resulted in:</p>
+      <ul>
+        <li>90% reduction in time spent on routine configuration tasks</li>
+        <li>Improved network reliability through regular health checks</li>
+        <li>Faster deployment of configuration changes</li>
+        <li>Reduced human error in network operations</li>
+      </ul>
+    `,
+    category: "Network Automation",
+    duration: "4 weeks",
+    tech: "Python, Netmiko, Paramiko, Jinja2",
+    status: "Completed",
+    tags: ["Python", "Automation", "Netmiko", "Scripting"],
+    demo: "#",
+    github: "#"
+  }
+};
+
+// ---------- BLOG POSTS DATA ----------
+const blogPostsData = {
+  1: {
+    title: "Understanding OSPF Area Types and Their Use Cases",
+    date: "March 15, 2024",
+    image: "https://picsum.photos/seed/ospfblog/800/400.jpg",
+    content: `
+      <p>Open Shortest Path First (OSPF) is a widely used interior gateway protocol (IGP) that uses link-state routing to determine the best path for data packets within a network. One of OSPF's key features is its ability to divide a network into areas, which helps manage routing information more efficiently. In this post, we'll explore the different OSPF area types and when to use each in your network design.</p>
+      
+      <h3>OSPF Area Types Overview</h3>
+      <p>OSPF supports several area types, each with specific characteristics and use cases:</p>
+      <ul>
+        <li><strong>Standard Area:</strong> The default area type that accepts intra-area, inter-area, and external routes.</li>
+        <li><strong>Stub Area:</strong> Does not accept external routes, instead using a default route to reach outside destinations.</li>
+        <li><strong>Totally Stubby Area:</strong> Cisco proprietary feature that blocks both external routes and inter-area routes, using only a default route.</li>
+        <li><strong>Not-So-Stubby Area (NSSA):</strong> Similar to a stub area but allows external routes to be imported as Type 7 LSAs.</li>
+      </ul>
+      
+      <h3>Standard Areas</h3>
+      <p>Standard areas are the default OSPF area type and are typically used in most network designs. They maintain complete routing information, including intra-area routes (Type 1 and Type 2 LSAs), inter-area routes (Type 3 LSAs), and external routes (Type 5 LSAs).</p>
+      
+      <p><strong>When to use:</strong></p>
+      <ul>
+        <li>Core or backbone areas (Area 0 must be a standard area)</li>
+        <li>Areas that need complete routing information</li>
+        <li>Areas with sufficient resources to maintain full routing tables</li>
+      </ul>
+      
+      <h3>Stub Areas</h3>
+      <p>Stub areas do not accept external routes (Type 5 LSAs). Instead, they use a default route to reach destinations outside the OSPF domain. This reduces the size of the routing table and the amount of routing information that needs to be processed.</p>
+      
+      <p><strong>When to use:</strong></p>
+      <ul>
+        <li>Areas with limited resources (smaller routers)</li>
+        <li>Areas with a single exit point</li>
+        <li>Areas that don't need specific external route information</li>
+      </ul>
+      
+      <h3>Totally Stubby Areas</h3>
+      <p>Totally stubby areas are a Cisco proprietary feature that blocks both external routes (Type 5 LSAs) and inter-area routes (Type 3 LSAs). Instead, they use only a default route to reach all destinations outside the area.</p>
+      
+      <p><strong>When to use:</strong></p>
+      <ul>
+        <li>Remote sites with very limited resources</li>
+        <li>Areas with a single exit point and no need for specific inter-area routes</li>
+        <li>Situations where minimizing routing table size is critical</li>
+      </ul>
+      
+      <h3>Not-So-Stubby Areas (NSSA)</h3>
+      <p>NSSAs are similar to stub areas but allow external routes to be imported as Type 7 LSAs. These Type 7 LSAs are then converted to Type 5 LSAs at the Area Border Router (ABR) when they enter other areas.</p>
+      
+      <p><strong>When to use:</strong></p>
+      <ul>
+        <li>Areas that need to import external routes but still want to reduce routing table size</li>
+        <li>Areas with multiple exit points where a default route isn't sufficient</li>
+        <li>Areas that need to run another routing protocol alongside OSPF</li>
+      </ul>
+      
+      <h3>Best Practices for OSPF Area Design</h3>
+      <p>When designing OSPF areas, consider these best practices:</p>
+      <ul>
+        <li>Keep the number of routers in an area to a reasonable limit (typically 50-100)</li>
+        <li>Ensure all areas connect to the backbone area (Area 0)</li>
+        <li>Use contiguous area IDs to simplify management</li>
+        <li>Consider using stub or totally stubby areas for remote sites with limited resources</li>
+        <li>Use NSSAs when you need to import external routes into an area</li>
+      </ul>
+      
+      <h3>Conclusion</h3>
+      <p>Understanding OSPF area types and their appropriate use cases is essential for designing efficient and scalable networks. By selecting the right area type for each segment of your network, you can optimize routing performance, reduce resource requirements, and simplify network management.</p>
+    `,
+    tags: ["Networking", "OSPF", "Routing Protocols", "Network Design"]
+  },
+  2: {
+    title: "VLAN Best Practices for Network Segmentation",
+    date: "February 28, 2024",
+    image: "https://picsum.photos/seed/vlanblog/800/400.jpg",
+    content: `
+      <p>Virtual Local Area Networks (VLANs) are a fundamental networking technology that allows network administrators to segment a physical network into multiple logical networks. This segmentation enhances security, improves performance, and simplifies network management. In this post, we'll explore VLAN best practices for effective network segmentation.</p>
+      
+      <h3>Understanding VLANs</h3>
+      <p>VLANs work at the data link layer (Layer 2) of the OSI model and enable the creation of multiple broadcast domains within a single physical network. Devices in different VLANs cannot communicate directly without a Layer 3 device (router or Layer 3 switch) to route traffic between them.</p>
+      
+      <h3>VLAN Planning Best Practices</h3>
+      <p>Before implementing VLANs, proper planning is essential:</p>
+      <ul>
+        <li><strong>Identify Segmentation Requirements:</strong> Determine which departments, functions, or security zones require network segmentation.</li>
+        <li><strong>Create a VLAN Numbering Scheme:</strong> Develop a consistent numbering scheme that makes VLAN identification intuitive.</li>
+        <li><strong>Document VLAN Purpose:</strong> Maintain documentation that clearly defines the purpose of each VLAN.</li>
+        <li><strong>Plan for Growth:</strong> Design your VLAN scheme with future expansion in mind.</li>
+      </ul>
+      
+      <h3>Common VLAN Implementations</h3>
+      <p>While VLAN implementations vary based on organizational needs, some common approaches include:</p>
+      
+      <h4>Department-Based VLANs</h4>
+      <p>Creating VLANs based on organizational departments is a common approach:</p>
+      <ul>
+        <li>VLAN 10: Finance</li>
+        <li>VLAN 20: Human Resources</li>
+        <li>VLAN 30: Engineering</li>
+        <li>VLAN 40: Marketing</li>
+        <li>VLAN 50: Sales</li>
+      </ul>
+      
+      <h4>Function-Based VLANs</h4>
+      <p>Segmenting based on network function is another effective strategy:</p>
+      <ul>
+        <li>VLAN 10: Servers</li>
+        <li>VLAN 20: Workstations</li>
+        <li>VLAN 30: VoIP</li>
+        <li>VLAN 40: Guests</li>
+        <li>VLAN 50: Management</li>
+      </ul>
+      
+      <h4>Hybrid Approach</h4>
+      <p>Many organizations use a hybrid approach that combines department and function-based segmentation:</p>
+      <ul>
+        <li>VLAN 10: Management (Network infrastructure)</li>
+        <li>VLAN 20: Finance Servers</li>
+        <li>VLAN 21: Finance Workstations</li>
+        <li>VLAN 30: HR Servers</li>
+        <li>VLAN 31: HR Workstations</li>
+        <li>VLAN 40: Guest Network</li>
+      </ul>
+      
+      <h3>VLAN Security Best Practices</h3>
+      <p>Implementing VLANs enhances network security when configured correctly:</p>
+      <ul>
+        <li><strong>Use Private VLANs:</strong> Implement Private VLANs (PVLANs) to further isolate devices within the same VLAN.</li>
+        <li><strong>Implement VLAN Access Control Lists:</strong> Use VACLs to control traffic within a VLAN.</li>
+        <li><strong>Secure Trunk Ports:</strong> Disable unused VLANs on trunk ports and limit allowed VLANs.</li>
+        <li><strong>Use VLAN Hopping Prevention:</strong> Configure switches to prevent VLAN hopping attacks.</li>
+        <li><strong>Implement Port Security:</strong> Use port security to limit MAC addresses per port.</li>
+      </ul>
+      
+      <h3>VLAN Configuration Best Practices</h3>
+      <p>When configuring VLANs, follow these best practices:</p>
+      <ul>
+        <li><strong>Use Consistent Naming:</strong> Assign descriptive names to VLANs for easier identification.</li>
+        <li><strong>Set Native VLAN:</strong> Change the default native VLAN from VLAN 1 to a dedicated, unused VLAN.</li>
+        <li><strong>Prune Unused VLANs:</strong> Remove unused VLANs from trunk links to reduce unnecessary broadcast traffic.</li>
+        <li><strong>Implement VTP Pruning:</strong> If using VTP, enable pruning to limit VLAN traffic.</li>
+        <li><strong>Document Configurations:</strong> Maintain up-to-date documentation of VLAN configurations.</li>
+      </ul>
+      
+      <h3>Inter-VLAN Routing Considerations</h3>
+      <p>For communication between VLANs, implement these best practices:</p>
+      <ul>
+        <li><strong>Use Layer 3 Switches:</strong> For high-performance inter-VLAN routing, use Layer 3 switches instead of routers.</li>
+        <li><strong>Implement Access Control:</strong> Use ACLs to control traffic between VLANs.</li>
+        <li><strong>Consider Router-on-a-Stick:</strong> For smaller networks, router-on-a-stick can be cost-effective.</li>
+        <li><strong>Plan for Redundancy:</strong> Implement First Hop Redundancy Protocols (FHRP) for default gateway redundancy.</li>
+      </ul>
+      
+      <h3>VLAN Troubleshooting Tips</h3>
+      <p>When troubleshooting VLAN issues, consider these common problems:</p>
+      <ul>
+        <li><strong>Mismatched Native VLANs:</strong> Ensure native VLANs match on both ends of trunk links.</li>
+        <li><strong>Incorrect Trunking:</strong> Verify that trunk ports are properly configured.</li>
+        <li><strong>VLAN Pruning Issues:</strong> Check if VLANs are being pruned unnecessarily.</li>
+        <li><strong>Access Port Mismatches:</strong> Ensure access ports are in the correct VLAN.</li>
+      </ul>
+      
+      <h3>Conclusion</h3>
+      <p>Effective VLAN implementation is crucial for modern network design. By following these best practices, you can create a secure, efficient, and manageable network infrastructure that meets your organization's needs while providing a foundation for future growth.</p>
+    `,
+    tags: ["Networking", "VLANs", "Network Security", "Network Design"]
+  },
+  3: {
+    title: "Network Automation with Python: Getting Started",
+    date: "February 10, 2024",
+    image: "https://picsum.photos/seed/pythonblog/800/400.jpg",
+    content: `
+      <p>Network automation is transforming how Mobile Developments manage and operate networks. Python, with its extensive libraries and simple syntax, has become the language of choice for network automation tasks. In this post, we'll explore how to get started with network automation using Python.</p>
+      
+      <h3>Why Python for Network Automation?</h3>
+      <p>Python offers several advantages for network automation:</p>
+      <ul>
+        <li><strong>Easy to Learn:</strong> Python's readable syntax makes it accessible to Mobile Developments without extensive programming backgrounds.</li>
+        <li><strong>Extensive Libraries:</strong> Libraries like Netmiko, Paramiko, and NAPALM simplify network device interactions.</li>
+        <li><strong>Cross-Platform Support:</strong> Python runs on various operating systems, making it versatile for different environments.</li>
+        <li><strong>Community Support:</strong> A large community provides numerous resources, tutorials, and pre-built scripts.</li>
+      </ul>
+      
+      <h3>Essential Python Libraries for Network Automation</h3>
+      <p>Several Python libraries are particularly useful for network automation:</p>
+      
+      <h4>Netmiko</h4>
+      <p>Netmiko is a multi-vendor library that simplifies SSH connections to network devices. It handles the differences between vendors, allowing you to write vendor-agnostic scripts.</p>
+      
+      <h4>Paramiko</h4>
+      <p>Paramiko is a lower-level SSH library that provides more control over SSH connections. It's useful when you need fine-grained control over your interactions with network devices.</p>
+      
+      <h4>NAPALM</h4>
+      <p>NAPALM (Network Automation and Programmability Abstraction Layer with Multivendor support) provides a unified API for interacting with different network devices.</p>
+      
+      <h4>TextFSM</h4>
+      <p>TextFSM is a template-based parsing library that helps extract structured data from unstructured command-line output.</p>
+      
+      <h3>Setting Up Your Python Environment</h3>
+      <p>Before starting with network automation, set up your Python environment:</p>
+      
+      <h4>1. Install Python</h4>
+      <p>Download and install Python from the official website (python.org). For network automation, Python 3.6 or newer is recommended.</p>
+      
+      <h4>2. Install pip</h4>
+      <p>pip is Python's package installer. It usually comes with Python, but if not, you can install it separately.</p>
+      
+      <h4>3. Create a Virtual Environment</h4>
+      <p>Create a virtual environment to isolate your network automation project:</p>
+      <pre><code>python -m venv network_automation
+source network_automation/bin/activate  # On Windows: network_automation\Scripts\activate</code></pre>
+      
+      <h4>4. Install Required Libraries</h4>
+      <p>Install the necessary libraries for network automation:</p>
+      <pre><code>pip install netmiko paramiko napalm textfsm jinja2</code></pre>
+      
+      <h3>Basic Network Automation Scripts</h3>
+      <p>Let's explore some basic network automation scripts using Netmiko:</p>
+      
+      <h4>Connecting to a Device</h4>
+      <pre><code>from netmiko import ConnectHandler
+
+device = {
+    'device_type': 'cisco_ios',
+    'host': '192.168.1.1',
+    'username': 'admin',
+    'password': 'password',
+}
+
+connection = ConnectHandler(**device)
+print("Successfully connected to the device")
+connection.disconnect()</code></pre>
+      
+      <h4>Running Commands</h4>
+      <pre><code>from netmiko import ConnectHandler
+
+device = {
+    'device_type': 'cisco_ios',
+    'host': '192.168.1.1',
+    'username': 'admin',
+    'password': 'password',
+}
+
+connection = ConnectHandler(**device)
+output = connection.send_command('show ip interface brief')
+print(output)
+connection.disconnect()</code></pre>
+      
+      <h4>Configuring a Device</h4>
+      <pre><code>from netmiko import ConnectHandler
+
+device = {
+    'device_type': 'cisco_ios',
+    'host': '192.168.1.1',
+    'username': 'admin',
+    'password': 'password',
+}
+
+connection = ConnectHandler(**device)
+
+config_commands = [
+    'interface GigabitEthernet0/1',
+    'description Connected to Server',
+    'ip address 192.168.1.10 255.255.255.0',
+    'no shutdown'
+]
+
+output = connection.send_config_set(config_commands)
+print(output)
+connection.disconnect()</code></pre>
+      
+      <h3>Advanced Network Automation Techniques</h3>
+      <p>As you become more comfortable with Python for network automation, you can explore advanced techniques:</p>
+      
+      <h4>Using Jinja2 Templates</h4>
+      <p>Jinja2 templates allow you to generate configurations dynamically:</p>
+      <pre><code>from jinja2 import Environment, FileSystemLoader
+from netmiko import ConnectHandler
+
+# Load the Jinja2 template
+env = Environment(loader=FileSystemLoader('.'))
+template = env.get_template('interface_config.j2')
+
+# Define variables for the template
+interface_vars = {
+    'interface': 'GigabitEthernet0/1',
+    'description': 'Connected to Server',
+    'ip_address': '192.168.1.10',
+    'subnet_mask': '255.255.255.0'
+}
+
+# Render the template
+config = template.render(interface_vars)
+
+# Connect to the device and apply the configuration
+device = {
+    'device_type': 'cisco_ios',
+    'host': '192.168.1.1',
+    'username': 'admin',
+    'password': 'password',
+}
+
+connection = ConnectHandler(**device)
+output = connection.send_config_set(config.split('\n'))
+print(output)
+connection.disconnect()</code></pre>
+      
+      <h4>Working with Multiple Devices</h4>
+      <p>Loop through multiple devices to apply configurations or gather information:</p>
+      <pre><code>from netmiko import ConnectHandler
+
+devices = [
+    {
+        'device_type': 'cisco_ios',
+        'host': '192.168.1.1',
+        'username': 'admin',
+        'password': 'password',
+    },
+    {
+        'device_type': 'cisco_ios',
+        'host': '192.168.1.2',
+        'username': 'admin',
+        'password': 'password',
+    }
+]
+
+for device in devices:
+    connection = ConnectHandler(**device)
+    output = connection.send_command('show version')
+    print(f"Device {device['host']}:")
+    print(output)
+    connection.disconnect()</code></pre>
+      
+      <h3>Best Practices for Network Automation</h3>
+      <p>When implementing network automation with Python, follow these best practices:</p>
+      <ul>
+        <li><strong>Use Configuration Files:</strong> Store device credentials and configurations in separate files.</li>
+        <li><strong>Implement Error Handling:</strong> Use try-except blocks to handle connection errors and exceptions.</li>
+        <li><strong>Log Your Activities:</strong> Implement logging to track script execution and troubleshoot issues.</li>
+        <li><strong>Test in a Lab Environment:</strong> Always test scripts in a lab environment before production deployment.</li>
+        <li><strong>Use Version Control:</strong> Store your scripts in a version control system like Git.</li>
+      </ul>
+      
+      <h3>Conclusion</h3>
+      <p>Python is a powerful tool for network automation that can save time, reduce errors, and improve network management efficiency. By starting with basic scripts and gradually incorporating more advanced techniques, you can build a comprehensive network automation toolkit that transforms how you manage your network infrastructure.</p>
+    `,
+    tags: ["Networking", "Python", "Automation", "Netmiko"]
+  }
+};
+
+// ---------- DOM ELEMENTS ----------
+const loadingScreen = document.getElementById('loadingScreen');
+const scrollProgress = document.getElementById('scrollProgress');
+const cursorGlow = document.getElementById('cursorGlow');
+const header = document.getElementById('header');
+const navLinks = document.querySelectorAll('.links a');
+const themeToggle = document.getElementById('themeToggle');
+const menuToggle = document.getElementById('menuToggle');
+const revealElements = document.querySelectorAll('.reveal');
+const skillFills = document.querySelectorAll('.skill-fill');
+const projectModal = document.getElementById('projectModal');
+const projectModalClose = document.getElementById('projectModalClose');
+const blogModal = document.getElementById('blogModal');
+const blogModalClose = document.getElementById('blogModalClose');
+const contactForm = document.getElementById('contactForm');
+const formNotification = document.getElementById('formNotification');
+const formNotificationText = document.getElementById('formNotificationText');
+
+// ---------- INITIALIZATION ----------
+document.addEventListener('DOMContentLoaded', () => {
+  // Hide loading screen
+  setTimeout(() => {
+    loadingScreen.classList.add('hidden');
+  }, 1000);
+
+  // Initialize scroll progress
+  updateScrollProgress();
+  
+  // Initialize magnetic effect
+  initMagneticEffect();
+  
+  // Initialize smooth scrolling
+  initSmoothScrolling();
+  
+  // Initialize reveal animations
+  initRevealAnimations();
+  
+  // Initialize skill bars animation
+  initSkillBarsAnimation();
+  
+  // Initialize theme toggle
+  initThemeToggle();
+  
+  // Initialize mobile menu
+  initMobileMenu();
+  
+  // Initialize project modal
+  initProjectModal();
+  
+  // Initialize blog modal
+  initBlogModal();
+  
+  // Initialize contact form
+  initContactForm();
+  
+  // Initialize back to top button
+  initBackToTop();
+  
+  // Initialize cursor glow effect
+  initCursorGlow();
+  
+  // Initialize network canvas animation
+  initNetworkCanvas();
+  
+  // Initialize particles animation
+  initParticles();
+});
+
+// ---------- SCROLL PROGRESS ----------
+function updateScrollProgress() {
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = scrollTop / docHeight;
+    scrollProgress.style.transform = `scaleX(${scrollPercent})`;
+    
+    // Update header on scroll
+    if (scrollTop > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+}
+
+// ---------- MAGNETIC EFFECT ----------
+function initMagneticEffect() {
+  const magneticElements = document.querySelectorAll('.magnetic');
+  
+  magneticElements.forEach(element => {
+    element.addEventListener('mousemove', (e) => {
+      const position = element.getBoundingClientRect();
+      const x = e.clientX - position.left - position.width / 2;
+      const y = e.clientY - position.top - position.height / 2;
+      
+      element.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+    });
+    
+    element.addEventListener('mouseleave', () => {
+      element.style.transform = 'translate(0px, 0px)';
+    });
+  });
+}
+
+// ---------- SMOOTH SCROLLING ----------
+function initSmoothScrolling() {
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // Remove active class from all links
+      navLinks.forEach(l => l.classList.remove('active'));
+      
+      // Add active class to clicked link
+      link.classList.add('active');
+      
+      // Get target element
+      const targetId = link.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      
+      if (targetElement) {
+        // Calculate offset considering header height
+        const headerHeight = header.offsetHeight;
+        const targetPosition = targetElement.offsetTop - headerHeight;
+        
+        // Smooth scroll to target
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+        
+        // Close mobile menu if open
+        const navLinksContainer = document.getElementById('navLinks');
+        if (navLinksContainer.classList.contains('active')) {
+          navLinksContainer.classList.remove('active');
+        }
+      }
+    });
+  });
+}
+
+// ---------- REVEAL ANIMATIONS ----------
+function initRevealAnimations() {
+  const revealOnScroll = () => {
+    revealElements.forEach(element => {
+      const elementTop = element.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+      
+      if (elementTop < windowHeight - 100) {
+        element.classList.add('show');
+      }
+    });
+  };
+  
+  // Run once on load
+  revealOnScroll();
+  
+  // Run on scroll
+  window.addEventListener('scroll', revealOnScroll);
+}
+
+// ---------- SKILL BARS ANIMATION ----------
+function initSkillBarsAnimation() {
+  const animateSkillBars = () => {
+    skillFills.forEach(skill => {
+      const width = skill.getAttribute('data-width');
+      const skillTop = skill.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+      
+      if (skillTop < windowHeight - 100 && !skill.style.width) {
+        skill.style.width = `${width}%`;
+      }
+    });
+  };
+  
+  // Run once on load
+  animateSkillBars();
+  
+  // Run on scroll
+  window.addEventListener('scroll', animateSkillBars);
+}
+
+// ---------- THEME TOGGLE ----------
+function initThemeToggle() {
+  // Check for saved theme preference or default to 'dark'
+  const currentTheme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  });
+}
+
+// ---------- MOBILE MENU ----------
+function initMobileMenu() {
+  menuToggle.addEventListener('click', () => {
+    const navLinksContainer = document.getElementById('navLinks');
+    navLinksContainer.classList.toggle('active');
+  });
+}
+
+// ---------- PROJECT MODAL ----------
+function initProjectModal() {
+  const projectCards = document.querySelectorAll('.project');
+  
+  projectCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      // Prevent event bubbling if clicking on the link
+      if (e.target.closest('.project-link')) {
+        return;
+      }
+      
+      const projectId = card.getAttribute('data-project-id');
+      const projectData = projectsData[projectId];
+      
+      if (projectData) {
+        // Populate modal with project data
+        document.getElementById('projectModalTitle').textContent = projectData.title;
+        document.getElementById('projectModalImage').src = projectData.image;
+        document.getElementById('projectModalDescription').innerHTML = projectData.description;
+        document.getElementById('projectModalCategory').textContent = projectData.category;
+        document.getElementById('projectModalDuration').textContent = projectData.duration;
+        document.getElementById('projectModalTech').textContent = projectData.tech;
+        document.getElementById('projectModalStatus').textContent = projectData.status;
+        
+        // Clear and populate tech tags
+        const techTagsContainer = document.getElementById('projectModalTechTags');
+        techTagsContainer.innerHTML = '';
+        projectData.tags.forEach(tag => {
+          const tagElement = document.createElement('span');
+          tagElement.className = 'project-modal-tech-item';
+          tagElement.textContent = tag;
+          techTagsContainer.appendChild(tagElement);
+        });
+        
+        // Set links
+        document.getElementById('projectModalDemo').href = projectData.demo;
+        document.getElementById('projectModalGithub').href = projectData.github;
+        
+        // Show modal
+        projectModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+  
+  // Close modal when clicking on close button
+  projectModalClose.addEventListener('click', () => {
+    projectModal.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+  
+  // Close modal when clicking outside content
+  projectModal.addEventListener('click', (e) => {
+    if (e.target === projectModal) {
+      projectModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+// ---------- BLOG MODAL ----------
+function initBlogModal() {
+  const blogPosts = document.querySelectorAll('.post');
+  
+  blogPosts.forEach(post => {
+    post.addEventListener('click', () => {
+      const postId = post.getAttribute('data-post-id');
+      const blogData = blogPostsData[postId];
+      
+      if (blogData) {
+        // Populate modal with blog data
+        document.getElementById('blogModalTitle').textContent = blogData.title;
+        document.getElementById('blogModalDate').textContent = blogData.date;
+        document.getElementById('blogModalImage').src = blogData.image;
+        document.getElementById('blogModalContent').innerHTML = blogData.content;
+        
+        // Clear and populate tags
+        const tagsContainer = document.getElementById('blogModalTags');
+        tagsContainer.innerHTML = '';
+        blogData.tags.forEach(tag => {
+          const tagElement = document.createElement('span');
+          tagElement.className = 'blog-modal-tag';
+          tagElement.textContent = tag;
+          tagsContainer.appendChild(tagElement);
+        });
+        
+        // Show modal
+        blogModal.classList.add('active');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+  
+  // Close modal when clicking on close button
+  blogModalClose.addEventListener('click', () => {
+    blogModal.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+  
+  // Close modal when clicking outside content
+  blogModal.addEventListener('click', (e) => {
+    if (e.target === blogModal) {
+      blogModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+  
+  // Share buttons
+  document.getElementById('shareTwitter').addEventListener('click', () => {
+    const url = window.location.href;
+    const text = document.getElementById('blogModalTitle').textContent;
+    window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
+  });
+  
+  document.getElementById('shareLinkedIn').addEventListener('click', () => {
+    const url = window.location.href;
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+  });
+  
+  document.getElementById('shareLink').addEventListener('click', () => {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(() => {
+      showNotification('Link copied to clipboard!', 'success');
+    });
+  });
+}
+
+// ---------- CONTACT FORM ----------
+function initContactForm() {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Reset previous errors
+    const formGroups = document.querySelectorAll('.form-group');
+    formGroups.forEach(group => {
+      group.classList.remove('error');
+    });
+    
+    // Validate form
+    let isValid = true;
+    const formData = {};
+    
+    // Validate name
+    const name = document.getElementById('name');
+    if (!name.value.trim()) {
+      name.closest('.form-group').classList.add('error');
+      isValid = false;
+    } else {
+      formData.name = name.value.trim();
+    }
+    
+    // Validate email
+    const email = document.getElementById('email');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.value.trim() || !emailRegex.test(email.value.trim())) {
+      email.closest('.form-group').classList.add('error');
+      isValid = false;
+    } else {
+      formData.email = email.value.trim();
+    }
+    
+    // Validate subject
+    const subject = document.getElementById('subject');
+    if (!subject.value.trim()) {
+      subject.closest('.form-group').classList.add('error');
+      isValid = false;
+    } else {
+      formData.subject = subject.value.trim();
+    }
+    
+    // Validate message
+    const message = document.getElementById('message');
+    if (!message.value.trim()) {
+      message.closest('.form-group').classList.add('error');
+      isValid = false;
+    } else {
+      formData.message = message.value.trim();
+    }
+    
+    // If form is valid, send email
+    if (isValid) {
+      // Using EmailJS for sending emails
+      // You need to sign up at https://www.emailjs.com/ and get your service ID, template ID, and public key
+      
+      // Replace these with your actual EmailJS credentials
+      const serviceID = 'your_service_id';
+      const templateID = 'your_template_id';
+      const publicKey = 'your_public_key';
+      
+      // Comment out the following code until you set up EmailJS
+      /*
+      emailjs.send(serviceID, templateID, formData, publicKey)
+        .then(() => {
+          showNotification('Your message has been sent successfully!', 'success');
+          contactForm.reset();
+        })
+        .catch((error) => {
+          console.error('Error sending email:', error);
+          showNotification('Failed to send your message. Please try again later.', 'error');
+        });
+      */
+      
+      // For now, just show a success message
+      showNotification('Your message has been sent successfully!', 'success');
+      contactForm.reset();
+    }
+  });
+}
+
+// ---------- FORM NOTIFICATION ----------
+function showNotification(message, type) {
+  formNotificationText.textContent = message;
+  formNotification.className = `form-notification ${type} show`;
+  
+  // Hide notification after 5 seconds
+  setTimeout(() => {
+    formNotification.classList.remove('show');
+  }, 5000);
+}
+
+// ---------- BACK TO TOP ----------
+function initBackToTop() {
+  const backToTopButton = document.querySelector('.back-to-top');
+  
+  backToTopButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
+// ---------- CURSOR GLOW ----------
+function initCursorGlow() {
+  document.addEventListener('mousemove', (e) => {
+    cursorGlow.style.left = `${e.clientX}px`;
+    cursorGlow.style.top = `${e.clientY}px`;
+  });
+  
+  document.addEventListener('mouseenter', () => {
+    cursorGlow.style.opacity = '0.1';
+  });
+  
+  document.addEventListener('mouseleave', () => {
+    cursorGlow.style.opacity = '0';
+  });
+}
+
+// ---------- NETWORK CANVAS ----------
+function initNetworkCanvas() {
+  const canvas = document.getElementById('networkCanvas');
+  const ctx = canvas.getContext('2d');
+  
+  // Set canvas size
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  
+  // Network nodes
+  const nodes = [];
+  const nodeCount = 50;
+  
+  // Create nodes
+  for (let i = 0; i < nodeCount; i++) {
+    nodes.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+      radius: Math.random() * 2 + 1
+    });
+  }
+  
+  // Animation loop
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Update and draw nodes
+    nodes.forEach((node, i) => {
+      // Update position
+      node.x += node.vx;
+      node.y += node.vy;
+      
+      // Bounce off walls
+      if (node.x < 0 || node.x > canvas.width) {
+        node.vx = -node.vx;
+      }
+      if (node.y < 0 || node.y > canvas.height) {
+        node.vy = -node.vy;
+      }
+      
+      // Draw node
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(88, 166, 255, 0.5)';
+      ctx.fill();
+      
+      // Draw connections
+      nodes.slice(i + 1).forEach(otherNode => {
+        const dx = node.x - otherNode.x;
+        const dy = node.y - otherNode.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 150) {
+          ctx.beginPath();
+          ctx.moveTo(node.x, node.y);
+          ctx.lineTo(otherNode.x, otherNode.y);
+          ctx.strokeStyle = `rgba(88, 166, 255, ${0.2 * (1 - distance / 150)})`;
+          ctx.stroke();
+        }
+      });
+    });
+    
+    requestAnimationFrame(animate);
+  }
+  
+  animate();
+}
+
+// ---------- PARTICLES ----------
+function initParticles() {
+  const particlesContainer = document.getElementById('particles');
+  const particleCount = 30;
+  
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    
+    // Random size
+    const size = Math.random() * 5 + 2;
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    
+    // Random position
+    particle.style.left = `${Math.random() * 100}%`;
+    particle.style.top = `${Math.random() * 100}%`;
+    
+    // Random animation duration and delay
+    const duration = Math.random() * 20 + 10;
+    const delay = Math.random() * 5;
+    particle.style.animation = `float ${duration}s ${delay}s infinite ease-in-out`;
+    
+    // Random opacity
+    particle.style.opacity = Math.random() * 0.5 + 0.1;
+    
+    particlesContainer.appendChild(particle);
+  }
+}
+
+// ---------- TYPEWRITER EFFECT ----------
+function initTypeWriter() {
+  const element = document.getElementById('typeWriter');
+  const text = element.textContent;
+  element.textContent = '';
+  
+  let index = 0;
+  const typeSpeed = 100;
+  
+  function type() {
+    if (index < text.length) {
+      element.textContent += text.charAt(index);
+      index++;
+      setTimeout(type, typeSpeed);
+    }
+  }
+  
+  // Start typing after a delay
+  setTimeout(type, 1000);
+}
+
+// Initialize typewriter effect
+initTypeWriter();
+</script>
+
+</body>
+</html>
